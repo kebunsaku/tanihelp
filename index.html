@@ -175,6 +175,7 @@
       font-weight: 900;
       letter-spacing: 0.02em;
       text-decoration: none;
+      white-space: nowrap;
     }
     .nav-cta:hover {
       background: var(--ink);
@@ -274,7 +275,8 @@
     }
     .crop-grid {
       display: grid;
-      gap: 22px;
+      grid-template-columns: 1fr;
+      gap: 16px;
     }
     .crop-card {
       display: flex;
@@ -300,39 +302,40 @@
     }
     .crop-index {
       position: absolute;
-      top: 14px;
-      left: 14px;
+      top: 10px;
+      left: 10px;
       z-index: 1;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 4px 8px;
+      gap: 5px;
+      padding: 3px 6px;
       border: 2px solid var(--ink);
       background: var(--ink);
       color: var(--paper);
-      font-size: 0.64rem;
+      font-size: 0.56rem;
       font-weight: 900;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.07em;
       line-height: 1.3;
       text-transform: uppercase;
     }
     .crop-title {
       margin: 0;
-      padding: 20px 22px 14px;
-      font-size: clamp(1.5rem, 3vw, 2rem);
-      line-height: 1.05;
+      padding: 14px 14px 10px;
+      font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+      line-height: 1.1;
       border-bottom: 2px solid var(--ink);
+      text-align: center;
     }
     .crop-body {
       display: flex;
       flex: 1;
       flex-direction: column;
-      padding: 22px;
+      padding: 14px;
     }
     .crop-tools {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
+      gap: 8px;
       margin: 0;
       padding: 0;
       list-style: none;
@@ -347,14 +350,14 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      min-height: 96px;
-      padding: 10px 6px;
+      gap: 5px;
+      min-height: 78px;
+      padding: 8px 5px;
       border: 2px solid var(--ink);
       border-radius: 4px;
       background: var(--paper);
       color: var(--ink);
-      font-size: 0.62rem;
+      font-size: 0.56rem;
       font-weight: 900;
       line-height: 1.2;
       text-align: center;
@@ -367,8 +370,8 @@
       color: var(--paper);
     }
     .crop-tool-btn svg {
-      width: 28px;
-      height: 28px;
+      width: 22px;
+      height: 22px;
       flex-shrink: 0;
     }
     /* Shared section styles */
@@ -809,11 +812,8 @@
         font-size: 1.08rem;
       }
       .crop-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 26px;
-      }
-      .crop-body {
-        padding: 26px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
       }
       .tool-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -841,6 +841,52 @@
       }
       .header-inner {
         flex-wrap: wrap;
+      }
+      /* Mobile: put nav-cta beside brand-name, reduce size */
+      .site-header .header-inner {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-areas:
+          "brand cta";
+        align-items: center;
+        column-gap: 12px;
+        row-gap: 0;
+      }
+      .site-header .brand {
+        grid-area: brand;
+        width: auto;
+        height: 72px;
+        gap: 8px;
+      }
+      .site-header .brand-mark {
+        flex: 0 0 30px;
+        width: 30px;
+        height: 30px;
+        border-width: 2px;
+      }
+      .site-header .brand-mark svg {
+        width: 17px;
+        height: 17px;
+      }
+      .site-header .brand-name {
+        max-width: 120px;
+        font-size: 0.56rem;
+      }
+      .site-header .site-nav {
+        grid-area: cta;
+        display: flex;
+        justify-self: end;
+        gap: 0;
+      }
+      .site-header .site-nav ul {
+        display: none;
+      }
+      .site-header .nav-cta {
+        min-height: 32px;
+        padding: 4px 10px;
+        border-width: 2px;
+        font-size: 0.62rem;
+        letter-spacing: 0.01em;
       }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -895,6 +941,7 @@
         </div>
         <div class="hero-art" id="pilih-alat" role="group" aria-label="Pilih alat berdasarkan jenis tanam">
           <div class="crop-grid">
+            <!-- Hidroponik -->
             <article class="crop-card crop-card--hydro">
               <div class="crop-visual">
                 <span class="crop-index" aria-hidden="true">01 / Hidroponik</span>
@@ -992,6 +1039,7 @@
                 </ul>
               </div>
             </article>
+            <!-- Microgreens -->
             <article class="crop-card crop-card--micro">
               <div class="crop-visual">
                 <span class="crop-index" aria-hidden="true">02 / Microgreens</span>
@@ -1082,6 +1130,187 @@
                   </li>
                   <li>
                     <a class="crop-tool-btn" href="[NEEDS INPUT: URL halaman Lihat Semua Alat]" aria-label="Lihat semua alat untuk microgreens">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" focusable="false">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                      </svg>
+                      <span>Lihat Semua Alat</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </article>
+            <!-- Aquaponik -->
+            <article class="crop-card crop-card--aqua">
+              <div class="crop-visual">
+                <span class="crop-index" aria-hidden="true">03 / Aquaponik</span>
+                <svg viewBox="0 0 560 320" aria-hidden="true" focusable="false">
+                  <path d="M280 18 530 160 280 302 30 160Z" fill="#2F6B4E" opacity=".08"></path>
+                  <g fill="none" stroke="#171A17" stroke-width="1.5" opacity=".1">
+                    <path d="M128 76 432 248"></path>
+                    <path d="M80 103 384 275"></path>
+                    <path d="M176 49 480 221"></path>
+                    <path d="M432 76 128 248"></path>
+                    <path d="M480 103 176 275"></path>
+                    <path d="M384 49 80 221"></path>
+                  </g>
+                  <path d="M286 278 470 180 500 196 316 294Z" fill="#171A17" opacity=".14"></path>
+                  <path d="M104 178 280 274 280 306 104 210Z" fill="#F4EFE3" stroke="#171A17" stroke-width="4" stroke-linejoin="round"></path>
+                  <path d="M280 274 456 178 456 210 280 306Z" fill="#F4EFE3" stroke="#171A17" stroke-width="4" stroke-linejoin="round"></path>
+                  <path d="M104 178 280 82 456 178 280 274Z" fill="#F4EFE3" stroke="#171A17" stroke-width="4" stroke-linejoin="round"></path>
+                  <path d="M124 178 280 96 436 178 280 260Z" fill="#2F6B4E" stroke="#171A17" stroke-width="4" stroke-linejoin="round"></path>
+                  <path d="M158 178 280 113 316 132" fill="none" stroke="#F4EFE3" stroke-width="3" stroke-linecap="round" opacity=".45"></path>
+                  <path d="M238 218 280 195 326 220" fill="none" stroke="#F4EFE3" stroke-width="3" stroke-linecap="round" opacity=".25"></path>
+                  <circle cx="181" cy="190" r="4" fill="#F4EFE3" opacity=".65"></circle>
+                  <circle cx="204" cy="205" r="3" fill="#F4EFE3" opacity=".5"></circle>
+                  <circle cx="356" cy="197" r="4" fill="#F4EFE3" opacity=".55"></circle>
+                  <path d="M152 178 280 115 408 178 280 241Z" fill="#F4EFE3" stroke="#171A17" stroke-width="4" stroke-linejoin="round"></path>
+                  <path d="M220 178 280 147 340 178 280 209Z" fill="none" stroke="#171A17" stroke-width="2" stroke-dasharray="5 6" opacity=".25"></path>
+                  <g fill="#171A17">
+                    <circle cx="232" cy="178" r="7"></circle>
+                    <circle cx="328" cy="178" r="7"></circle>
+                    <circle cx="280" cy="151" r="7"></circle>
+                    <circle cx="280" cy="205" r="7"></circle>
+                  </g>
+                  <g fill="#2F6B4E" stroke="#171A17" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M232 178v-38" fill="none"></path>
+                    <path d="M232 152c-16-4-26-16-24-30 15 0 26 11 28 25Z"></path>
+                    <path d="M232 162c14-3 22-14 20-26-13 0-22 9-23 21Z"></path>
+                    <path d="M232 146c-3-12 1-23 10-29 7 10 4 23-5 30Z"></path>
+                    <path d="M328 178v-46" fill="none"></path>
+                    <path d="M328 150c-15-4-24-15-22-29 14 0 24 10 26 23Z"></path>
+                    <path d="M328 160c13-3 21-13 19-25-12 0-21 8-23 20Z"></path>
+                    <path d="M328 143c-2-11 2-22 10-28 7 9 4 21-4 28Z"></path>
+                    <path d="M280 151v-50" fill="none"></path>
+                    <path d="M280 126c-15-4-24-15-22-29 14 0 24 10 26 23Z"></path>
+                    <path d="M280 136c13-3 21-13 19-25-12 0-21 8-23 20Z"></path>
+                    <path d="M280 116c-2-12 2-24 10-31 7 10 4 23-4 31Z"></path>
+                    <path d="M280 205v-41" fill="none"></path>
+                    <path d="M280 186c-14-3-23-14-21-27 13 0 23 10 25 22Z"></path>
+                    <path d="M280 195c12-2 20-12 19-24-12 0-20 8-22 19Z"></path>
+                    <path d="M280 179c-2-10 1-20 8-25 6 8 3 19-3 25Z"></path>
+                  </g>
+                  <path d="M126 214 220 265 220 284 126 233Z" fill="#2F6B4E" stroke="#171A17" stroke-width="3" stroke-linejoin="round"></path>
+                  <path d="M148 232 170 244M170 244v10M170 244l9-5" fill="none" stroke="#F4EFE3" stroke-width="3" stroke-linecap="round"></path>
+                </svg>
+              </div>
+              <h2 class="crop-title">Aquaponik</h2>
+              <div class="crop-body">
+                <ul class="crop-tools" aria-label="Alat untuk aquaponik">
+                  <li>
+                    <a class="crop-tool-btn" href="[NEEDS INPUT: URL halaman Kalkulator Biaya Mulai Usaha]" aria-label="Kalkulator biaya untuk aquaponik">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" focusable="false">
+                        <rect x="4" y="3" width="16" height="18"></rect>
+                        <path d="M7 7h10M8 11h.01M12 11h.01M16 11h.01M8 14h.01M12 14h.01M16 14h.01M8 17h5"></path>
+                      </svg>
+                      <span>Kalkulator Biaya</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="crop-tool-btn" href="[NEEDS INPUT: URL halaman Proyeksi Pendapatan]" aria-label="Proyeksi pendapatan untuk aquaponik">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" focusable="false">
+                        <path d="M4 20V4M4 20h17"></path>
+                        <path d="M8 16v-4M13 16V8M18 16v-6"></path>
+                      </svg>
+                      <span>Proyeksi Pendapatan</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="crop-tool-btn" href="[NEEDS INPUT: URL halaman Jadwal Tanam]" aria-label="Jadwal tanam untuk aquaponik">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" focusable="false">
+                        <rect x="3" y="5" width="18" height="16"></rect>
+                        <path d="M8 3v4M16 3v4M3 10h18M8 14h2M14 14h2M8 17h2"></path>
+                      </svg>
+                      <span>Jadwal Tanam</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="crop-tool-btn" href="[NEEDS INPUT: URL halaman Lihat Semua Alat]" aria-label="Lihat semua alat untuk aquaponik">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" focusable="false">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                      </svg>
+                      <span>Lihat Semua Alat</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </article>
+            <!-- Edible Flower -->
+            <article class="crop-card crop-card--flower">
+              <div class="crop-visual">
+                <span class="crop-index" aria-hidden="true">04 / Edible Flower</span>
+                <svg viewBox="0 0 560 320" aria-hidden="true" focusable="false">
+                  <defs>
+                    <g id="flower-bloom">
+                      <circle cx="0" cy="-10" r="6" fill="#2F6B4E" stroke="#171A17" stroke-width="2"></circle>
+                      <circle cx="9" cy="-3" r="6" fill="#2F6B4E" stroke="#171A17" stroke-width="2"></circle>
+                      <circle cx="6" cy="8" r="6" fill="#2F6B4E" stroke="#171A17" stroke-width="2"></circle>
+                      <circle cx="-6" cy="8" r="6" fill="#2F6B4E" stroke="#171A17" stroke-width="2"></circle>
+                      <circle cx="-9" cy="-3" r="6" fill="#2F6B4E" stroke="#171A17" stroke-width="2"></circle>
+                      <circle cx="0" cy="0" r="4" fill="#F4EFE3" stroke="#171A17" stroke-width="2"></circle>
+                    </g>
+                  </defs>
+                  <path d="M280 18 530 160 280 302 30 160Z" fill="#2F6B4E" opacity=".08"></path>
+                  <g fill="none" stroke="#171A17" stroke-width="1.5" opacity=".1">
+                    <path d="M128 76 432 248"></path>
+                    <path d="M80 103 384 275"></path>
+                    <path d="M176 49 480 221"></path>
+                    <path d="M432 76 128 248"></path>
+                    <path d="M480 103 176 275"></path>
+                    <path d="M384 49 80 221"></path>
+                  </g>
+                  <path d="M292 298 472 202 498 216 318 312Z" fill="#171A17" opacity=".12"></path>
+                  <path d="M88 200 280 300 280 316 88 216Z" fill="#F4EFE3" stroke="#171A17" stroke-width="4" stroke-linejoin="round"></path>
+                  <path d="M280 300 472 200 472 216 280 316Z" fill="#F4EFE3" stroke="#171A17" stroke-width="4" stroke-linejoin="round"></path>
+                  <path d="M88 200 280 100 472 200 280 300Z" fill="#F4EFE3" stroke="#171A17" stroke-width="4" stroke-linejoin="round"></path>
+                  <path d="M112 200 280 111 448 200 280 289Z" fill="#2F6B4E" opacity=".16" stroke="#171A17" stroke-width="3" stroke-linejoin="round"></path>
+                  <path d="M280 260v-60" fill="none" stroke="#171A17" stroke-width="4" stroke-linecap="round"></path>
+                  <path d="M280 220c-14-2-24-12-24-26 14 0 24 10 26 24Z" fill="#2F6B4E" stroke="#171A17" stroke-width="3" stroke-linejoin="round"></path>
+                  <path d="M280 236c13-2 22-11 22-24-13 0-22 9-24 22Z" fill="#2F6B4E" stroke="#171A17" stroke-width="3" stroke-linejoin="round"></path>
+                  <use href="#flower-bloom" transform="translate(280 168) scale(1.4)"></use>
+                  <use href="#flower-bloom" transform="translate(230 200) scale(.9)"></use>
+                  <use href="#flower-bloom" transform="translate(330 200) scale(.9)"></use>
+                  <path d="M120 236 212 286 212 300 120 250Z" fill="#2F6B4E" stroke="#171A17" stroke-width="3" stroke-linejoin="round"></path>
+                  <path d="M140 252 160 263M160 263v10M160 263l8-4" fill="none" stroke="#F4EFE3" stroke-width="3" stroke-linecap="round"></path>
+                </svg>
+              </div>
+              <h2 class="crop-title">Edible Flower</h2>
+              <div class="crop-body">
+                <ul class="crop-tools" aria-label="Alat untuk edible flower">
+                  <li>
+                    <a class="crop-tool-btn" href="[NEEDS INPUT: URL halaman Kalkulator Biaya Mulai Usaha]" aria-label="Kalkulator biaya untuk edible flower">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" focusable="false">
+                        <rect x="4" y="3" width="16" height="18"></rect>
+                        <path d="M7 7h10M8 11h.01M12 11h.01M16 11h.01M8 14h.01M12 14h.01M16 14h.01M8 17h5"></path>
+                      </svg>
+                      <span>Kalkulator Biaya</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="crop-tool-btn" href="[NEEDS INPUT: URL halaman Proyeksi Pendapatan]" aria-label="Proyeksi pendapatan untuk edible flower">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" focusable="false">
+                        <path d="M4 20V4M4 20h17"></path>
+                        <path d="M8 16v-4M13 16V8M18 16v-6"></path>
+                      </svg>
+                      <span>Proyeksi Pendapatan</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="crop-tool-btn" href="[NEEDS INPUT: URL halaman Jadwal Tanam]" aria-label="Jadwal tanam untuk edible flower">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" focusable="false">
+                        <rect x="3" y="5" width="18" height="16"></rect>
+                        <path d="M8 3v4M16 3v4M3 10h18M8 14h2M14 14h2M8 17h2"></path>
+                      </svg>
+                      <span>Jadwal Tanam</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="crop-tool-btn" href="[NEEDS INPUT: URL halaman Lihat Semua Alat]" aria-label="Lihat semua alat untuk edible flower">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" focusable="false">
                         <rect x="3" y="3" width="7" height="7"></rect>
                         <rect x="14" y="3" width="7" height="7"></rect>
