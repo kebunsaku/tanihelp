@@ -23,7 +23,7 @@
     }
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 92px;
+      scroll-padding-top: 76px;
     }
     body {
       margin: 0;
@@ -102,8 +102,8 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      min-height: 100px;
-      padding-block: 10px;
+      min-height: 64px;
+      padding-block: 8px;
     }
     .brand {
       display: inline-flex;
@@ -111,7 +111,7 @@
       gap: 10px;
       min-width: 0;
       width: 350px;
-      height: 100px;
+      height: 64px;
       color: var(--ink);
       text-decoration: none;
     }
@@ -129,13 +129,20 @@
       height: 22px;
     }
     .brand-name {
-      max-width: 150px;
+      max-width: 210px;
       overflow-wrap: anywhere;
-      font-size: 0.65rem;
+      font-size: 0.72rem;
       font-weight: 900;
-      letter-spacing: 0.025em;
+      letter-spacing: 0.02em;
       line-height: 1.18;
       text-transform: uppercase;
+    }
+    .brand-by {
+      display: block;
+      font-size: 0.78em;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      opacity: 0.72;
     }
     .site-nav {
       display: flex;
@@ -184,7 +191,7 @@
     .hero {
       position: relative;
       overflow: hidden;
-      padding: 42px 0 50px;
+      padding: 42px 0 15px;
     }
     .hero-grid {
       display: grid;
@@ -320,22 +327,23 @@
     }
     .crop-title {
       margin: 0;
-      padding: 14px 14px 10px;
+      padding: 14px 10px 12px;
+      background: #fff;
       font-size: clamp(1.05rem, 1.8vw, 1.3rem);
       line-height: 1.1;
-      border-bottom: 2px solid var(--ink);
       text-align: center;
     }
     .crop-body {
       display: flex;
       flex: 1;
       flex-direction: column;
-      padding: 14px;
+      padding: 12px 10px;
+      background: #fff;
     }
     .crop-tools {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
       margin: 0;
       padding: 0;
       list-style: none;
@@ -343,6 +351,7 @@
     .crop-tools li {
       margin: 0;
       display: flex;
+      min-width: 0;
     }
     .crop-tool-btn {
       display: flex;
@@ -351,15 +360,17 @@
       align-items: center;
       justify-content: center;
       gap: 5px;
+      min-width: 0;
       min-height: 78px;
-      padding: 8px 5px;
+      padding: 7px 4px;
       border: 2px solid var(--ink);
       border-radius: 4px;
       background: var(--paper);
       color: var(--ink);
-      font-size: 0.56rem;
-      font-weight: 900;
+      font-size: 0.8rem;
+      font-weight: 700;
       line-height: 1.2;
+      overflow-wrap: anywhere;
       text-align: center;
       text-decoration: none;
       transition: background-color 0.15s ease, color 0.15s ease;
@@ -370,13 +381,28 @@
       color: var(--paper);
     }
     .crop-tool-btn svg {
-      width: 22px;
-      height: 22px;
+      width: 20px;
+      height: 20px;
       flex-shrink: 0;
+    }
+    .crop-see-all {
+      align-self: flex-end;
+      margin-top: auto;
+      padding-top: 12px;
+      border-bottom: 2px solid transparent;
+      color: var(--ink);
+      font-size: 0.7rem;
+      font-weight: 900;
+      text-align: right;
+      text-decoration: none;
+    }
+    .crop-see-all:hover,
+    .crop-see-all:focus-visible {
+      border-bottom-color: var(--ink);
     }
     /* Shared section styles */
     .section {
-      padding: 56px 0;
+      padding: 17px 0;
     }
     .section-head {
       display: grid;
@@ -406,11 +432,6 @@
       margin: 0;
       font-size: clamp(1.85rem, 5.5vw, 3.35rem);
       line-height: 1.05;
-    }
-    .section-intro {
-      margin: 0;
-      font-size: 0.95rem;
-      line-height: 1.6;
     }
     /* Tools */
     .tool-grid {
@@ -767,18 +788,15 @@
         width: min(calc(100% - 48px), var(--max));
       }
       .brand-name {
-        max-width: 190px;
-        font-size: 0.71rem;
+        max-width: 210px;
+        font-size: 0.78rem;
       }
     }
     @media (min-width: 820px) {
       .section {
-        padding: 78px 0;
+        padding: 23px 0;
       }
       .section-head {
-        grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
-        align-items: end;
-        gap: 40px;
         margin-bottom: 34px;
       }
       .audience-panel {
@@ -803,7 +821,7 @@
     }
     @media (min-width: 900px) {
       .hero {
-        padding: 76px 0 82px;
+        padding: 76px 0 25px;
       }
       .hero-grid {
         gap: 56px;
@@ -845,6 +863,8 @@
       /* Mobile: put nav-cta beside brand-name, reduce size */
       .site-header .header-inner {
         display: grid;
+        min-height: 0;
+        padding-block: 6px;
         grid-template-columns: 1fr auto;
         grid-template-areas:
           "brand cta";
@@ -855,7 +875,7 @@
       .site-header .brand {
         grid-area: brand;
         width: auto;
-        height: 72px;
+        height: 44px;
         gap: 8px;
       }
       .site-header .brand-mark {
@@ -915,7 +935,7 @@
             <path d="M12 18c0-3.6-2.9-6.5-6.5-6.5 0 3.6 2.9 6.5 6.5 6.5Z"></path>
           </svg>
         </span>
-        <span class="brand-name">[NEEDS INPUT: nama situs]</span>
+        <span class="brand-name">tanihelp <span class="brand-by">by kebunsaku</span></span>
       </a>
       <nav class="site-nav" id="site-nav" aria-label="Navigasi utama">
         <ul>
@@ -1004,7 +1024,7 @@
                         <rect x="4" y="3" width="16" height="18"></rect>
                         <path d="M7 7h10M8 11h.01M12 11h.01M16 11h.01M8 14h.01M12 14h.01M16 14h.01M8 17h5"></path>
                       </svg>
-                      <span>Kalkulator Biaya</span>
+                      <span>Modal instalasi</span>
                     </a>
                   </li>
                   <li>
@@ -1013,7 +1033,7 @@
                         <path d="M4 20V4M4 20h17"></path>
                         <path d="M8 16v-4M13 16V8M18 16v-6"></path>
                       </svg>
-                      <span>Proyeksi Pendapatan</span>
+                      <span>Resep AB Mix</span>
                     </a>
                   </li>
                   <li>
@@ -1025,18 +1045,8 @@
                       <span>Jadwal Tanam</span>
                     </a>
                   </li>
-                  <li>
-                    <a class="crop-tool-btn" href="[NEEDS INPUT: URL halaman Lihat Semua Alat]" aria-label="Lihat semua alat untuk hidroponik">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" focusable="false">
-                        <rect x="3" y="3" width="7" height="7"></rect>
-                        <rect x="14" y="3" width="7" height="7"></rect>
-                        <rect x="3" y="14" width="7" height="7"></rect>
-                        <rect x="14" y="14" width="7" height="7"></rect>
-                      </svg>
-                      <span>Lihat Semua Alat</span>
-                    </a>
-                  </li>
                 </ul>
+                <a class="crop-see-all" href="[NEEDS INPUT: URL halaman Lihat Semua Alat]">Lihat semua alat <span aria-hidden="true">→</span></a>
               </div>
             </article>
             <!-- Microgreens -->
@@ -1107,7 +1117,7 @@
                         <rect x="4" y="3" width="16" height="18"></rect>
                         <path d="M7 7h10M8 11h.01M12 11h.01M16 11h.01M8 14h.01M12 14h.01M16 14h.01M8 17h5"></path>
                       </svg>
-                      <span>Kalkulator Biaya</span>
+                      <span>Modal awal</span>
                     </a>
                   </li>
                   <li>
@@ -1116,7 +1126,7 @@
                         <path d="M4 20V4M4 20h17"></path>
                         <path d="M8 16v-4M13 16V8M18 16v-6"></path>
                       </svg>
-                      <span>Proyeksi Pendapatan</span>
+                      <span>Kebutuhan benih</span>
                     </a>
                   </li>
                   <li>
@@ -1128,18 +1138,8 @@
                       <span>Jadwal Tanam</span>
                     </a>
                   </li>
-                  <li>
-                    <a class="crop-tool-btn" href="[NEEDS INPUT: URL halaman Lihat Semua Alat]" aria-label="Lihat semua alat untuk microgreens">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" focusable="false">
-                        <rect x="3" y="3" width="7" height="7"></rect>
-                        <rect x="14" y="3" width="7" height="7"></rect>
-                        <rect x="3" y="14" width="7" height="7"></rect>
-                        <rect x="14" y="14" width="7" height="7"></rect>
-                      </svg>
-                      <span>Lihat Semua Alat</span>
-                    </a>
-                  </li>
                 </ul>
+                <a class="crop-see-all" href="[NEEDS INPUT: URL halaman Lihat Semua Alat]">Lihat semua alat <span aria-hidden="true">→</span></a>
               </div>
             </article>
             <!-- Aquaponik -->
@@ -1226,18 +1226,8 @@
                       <span>Jadwal Tanam</span>
                     </a>
                   </li>
-                  <li>
-                    <a class="crop-tool-btn" href="[NEEDS INPUT: URL halaman Lihat Semua Alat]" aria-label="Lihat semua alat untuk aquaponik">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" focusable="false">
-                        <rect x="3" y="3" width="7" height="7"></rect>
-                        <rect x="14" y="3" width="7" height="7"></rect>
-                        <rect x="3" y="14" width="7" height="7"></rect>
-                        <rect x="14" y="14" width="7" height="7"></rect>
-                      </svg>
-                      <span>Lihat Semua Alat</span>
-                    </a>
-                  </li>
                 </ul>
+                <a class="crop-see-all" href="[NEEDS INPUT: URL halaman Lihat Semua Alat]">Lihat semua alat <span aria-hidden="true">→</span></a>
               </div>
             </article>
             <!-- Edible Flower -->
@@ -1309,18 +1299,8 @@
                       <span>Jadwal Tanam</span>
                     </a>
                   </li>
-                  <li>
-                    <a class="crop-tool-btn" href="[NEEDS INPUT: URL halaman Lihat Semua Alat]" aria-label="Lihat semua alat untuk edible flower">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" focusable="false">
-                        <rect x="3" y="3" width="7" height="7"></rect>
-                        <rect x="14" y="3" width="7" height="7"></rect>
-                        <rect x="3" y="14" width="7" height="7"></rect>
-                        <rect x="14" y="14" width="7" height="7"></rect>
-                      </svg>
-                      <span>Lihat Semua Alat</span>
-                    </a>
-                  </li>
                 </ul>
+                <a class="crop-see-all" href="[NEEDS INPUT: URL halaman Lihat Semua Alat]">Lihat semua alat <span aria-hidden="true">→</span></a>
               </div>
             </article>
           </div>
@@ -1334,7 +1314,6 @@
             <p class="kicker">Alat online</p>
             <h2 id="alat-title">Tiga alat untuk mulai.</h2>
           </div>
-          <p class="section-intro">Semua alat bisa dipakai gratis. Pilih yang paling kamu butuhkan untuk menyusun rencana usaha.</p>
         </div>
         <div class="tool-grid">
           <article class="tool-card">
@@ -1427,7 +1406,7 @@
                 <path d="M12 18c0-3.6-2.9-6.5-6.5-6.5 0 3.6 2.9 6.5 6.5 6.5Z"></path>
               </svg>
             </span>
-            <span class="brand-name">[NEEDS INPUT: nama situs]</span>
+            <span class="brand-name">tanihelp <span class="brand-by">by kebunsaku</span></span>
           </a>
           <p>Alat online gratis untuk masyarakat umum yang ingin memulai usaha hidroponik dan microgreens.</p>
         </div>
@@ -1446,7 +1425,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 [NEEDS INPUT: nama situs]</p>
+        <p>© 2026 tanihelp by kebunsaku</p>
         <div class="footer-legal">
           <a href="[NEEDS INPUT: URL kebijakan privasi]">Kebijakan privasi</a>
           <span>Sebagian tautan produk merupakan tautan afiliasi.</span>
