@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resep Nutrisi AB Mix — Kalkulator Hidroponik | tanihelp by kebunsaku</title>
+  <meta name="description" content="Hitung kebutuhan bahan larutan A dan B untuk membuat nutrisi AB Mix hidroponik sesuai jenis tanaman, fase tanam, dan volume larutan.">
+  <meta name="theme-color" content="#F4EFE3">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232F6B4E'/%3E%3Cpath d='M50 79V43M50 51c0-13 10-23 23-23 0 13-10 23-23 23Zm0 12c0-13-10-23-23-23 0 13 10 23 23 23Z' fill='none' stroke='%23F4EFE3' stroke-width='7'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --paper: #F4EFE3;
+      --ink: #171A17;
+      --leaf: #2F6B4E;
+      --max: 1180px;
+      --border: 3px solid var(--ink);
+      --hairline: rgba(23, 26, 23, 0.14);
+    }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 76px;
+    }
+    body {
+      margin: 0;
+      min-width: 280px;
+      color: var(--ink);
+      background-color: var(--paper);
+      background-image:
+        linear-gradient(rgba(23, 26, 23, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23, 26, 23, 0.045) 1px, transparent 1px);
+      background-size: 36px 36px;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    ::selection {
+      color: var(--paper);
+      background: var(--leaf);
+    }
+    h1,
+    h2,
+    h3,
+    .display {
+      font-family: "Arial Black", "Segoe UI Black", system-ui, sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.035em;
+      text-wrap: balance;
+    }
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+    a {
+      color: inherit;
+    }
+    svg {
+      display: block;
+    }
+    :focus-visible {
+      outline: 3px solid var(--leaf);
+      outline-offset: 3px;
+    }
+    .wrap {
+      width: min(calc(100% - 32px), var(--max));
+      margin-inline: auto;
+    }
+    .skip-link {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 100;
+      padding: 10px 16px;
+      border: 3px solid var(--paper);
+      background: var(--ink);
+      color: var(--paper);
+      font-weight: 800;
+      text-decoration: none;
+      transform: translateY(-170%);
+      transition: transform 0.15s ease;
+    }
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: var(--border);
+      background: var(--paper);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 64px;
+      padding-block: 8px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      width: 350px;
+      height: 64px;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .brand-mark {
+      display: grid;
+      flex: 0 0 38px;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border: var(--border);
+      background: var(--leaf);
+    }
+    .brand-mark svg {
+      width: 22px;
+      height: 22px;
+    }
+    .brand-name {
+      max-width: 210px;
+      overflow-wrap: anywhere;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      line-height: 1.18;
+      text-transform: uppercase;
+    }
+    .brand-by {
+      display: block;
+      font-size: 0.78em;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      opacity: 0.72;
+    }
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+    }
+    .site-nav ul {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .site-nav li a {
+      padding-block: 5px;
+      border-bottom: 2px solid transparent;
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .site-nav li a:hover,
+    .site-nav li a:focus-visible {
+      border-bottom-color: var(--ink);
+    }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 8px 14px;
+      border: 3px solid var(--ink);
+      border-radius: 4px;
+      background: var(--leaf);
+      color: var(--paper);
+      font-size: 0.76rem;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-cta:hover {
+      background: var(--ink);
+    }
+    /* Page intro */
+    .page-hero {
+      padding: 36px 0 24px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 7px;
+      margin: 0 0 16px;
+      padding: 6px 10px;
+      border: 2px solid var(--ink);
+      background: var(--paper);
+      font-size: 0.7rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(1.8rem, 7vw, 3.1rem);
+      line-height: 1.04;
+    }
+    .page-lede {
+      max-width: 62ch;
+      margin: 0;
+      font-size: 0.98rem;
+      line-height: 1.65;
+    }
+    /* Calculator layout */
+    .calc-section {
+      padding-bottom: 60px;
+    }
+    .calc-grid {
+      display: grid;
+      gap: 18px;
+      align-items: start;
+    }
+    .panel {
+      min-width: 0;
+      padding: 20px;
+      border: var(--border);
+      border-radius: 4px;
+      background: #fff;
+    }
+    .panel-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .panel-head--split {
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px 14px;
+    }
+    .panel-head-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .stage-switch {
+      margin-left: auto;
+    }
+    .panel-num {
+      padding: 2px 6px;
+      border: 2px solid var(--ink);
+      font-size: 0.66rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      line-height: 1.4;
+    }
+    .panel-head h2 {
+      margin: 0;
+      font-size: 1.12rem;
+      line-height: 1.15;
+    }
+    /* Fields */
+    .field {
+      margin-bottom: 18px;
+    }
+    .field:last-child {
+      margin-bottom: 0;
+    }
+    .field label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+    .select-wrap {
+      position: relative;
+    }
+    .select-wrap select {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      margin: 0;
+      padding: 11px 42px 11px 12px;
+      border: 2px solid var(--ink);
+      border-radius: 4px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 800;
+      line-height: 1.25;
+      cursor: pointer;
+    }
+    .select-wrap::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 16px;
+      width: 9px;
+      height: 9px;
+      border-right: 2px solid var(--ink);
+      border-bottom: 2px solid var(--ink);
+      transform: translateY(-70%) rotate(45deg);
+      pointer-events: none;
+    }
+    .input-row {
+      display: flex;
+      align-items: stretch;
+      border: 2px solid var(--ink);
+      border-radius: 4px;
+      background: #fff;
+    }
+    .input-row:focus-within {
+      outline: 3px solid var(--leaf);
+      outline-offset: 2px;
+    }
+    .input-row input {
+      flex: 1 1 auto;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 11px 12px;
+      border: 0;
+      background: transparent;
+      color: var(--ink);
+      font-family: inherit;
+      font-size: 1.05rem;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+    }
+    .input-row input:focus-visible {
+      outline: none;
+    }
+    .input-row .unit {
+      display: inline-flex;
+      align-items: center;
+      padding: 0 12px;
+      border-left: 2px solid var(--ink);
+      background: var(--paper);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .hint {
+      margin: 7px 0 0;
+      color: rgba(23, 26, 23, 0.64);
+      font-size: 0.74rem;
+      line-height: 1.45;
+    }
+    /* Stage tabs */
+    .tabs {
+      display: grid;
+      grid-template-columns: repeat(2, auto);
+      overflow: hidden;
+      border: 2px solid var(--ink);
+      border-radius: 4px;
+      background: var(--paper);
+    }
+    .tab {
+      -webkit-appearance: none;
+      appearance: none;
+      margin: 0;
+      padding: 7px 13px;
+      border: 0;
+      background: transparent;
+      color: var(--ink);
+      font-family: inherit;
+      font-size: 0.74rem;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+    }
+    .tab + .tab {
+      border-left: 2px solid var(--ink);
+    }
+    .tab:hover {
+      background: rgba(47, 107, 78, 0.12);
+    }
+    .tab[aria-selected="true"] {
+      background: var(--leaf);
+      color: var(--paper);
+    }
+    .tab:focus-visible {
+      outline: 3px solid var(--leaf);
+      outline-offset: -3px;
+    }
+    /* Note */
+    .note {
+      margin: 18px 0 0;
+      padding: 12px 14px;
+      border: 2px solid var(--ink);
+      border-left: 6px solid var(--leaf);
+      background: var(--paper);
+      font-size: 0.78rem;
+      line-height: 1.5;
+    }
+    .note strong {
+      font-weight: 900;
+    }
+    /* Result */
+    .result-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 4px 8px;
+      margin: 0 0 18px;
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      line-height: 1.5;
+    }
+    .result-meta .dot {
+      color: rgba(23, 26, 23, 0.4);
+    }
+    .solution + .solution {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 2px dashed var(--ink);
+    }
+    .solution-head {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 4px;
+    }
+    .solution-head h3 {
+      margin: 0;
+      font-size: 1.02rem;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+    .solution-note {
+      margin: 0 0 8px;
+      color: rgba(23, 26, 23, 0.62);
+      font-size: 0.72rem;
+      line-height: 1.45;
+    }
+    .ing-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .ing-list li {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .ing-list li:first-child {
+      padding-top: 0;
+    }
+    .ing-list li:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+    .ing-name {
+      font-size: 0.9rem;
+      line-height: 1.35;
+    }
+    .ing-amount {
+      flex: 0 0 auto;
+      font-size: 0.95rem;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+      line-height: 1.35;
+      white-space: nowrap;
+    }
+    .result-foot {
+      margin: 20px 0 0;
+      padding-top: 14px;
+      border-top: 1px solid var(--hairline);
+      color: rgba(23, 26, 23, 0.66);
+      font-size: 0.74rem;
+      line-height: 1.5;
+    }
+    /* Footer */
+    .site-footer {
+      padding: 40px 0 22px;
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .footer-grid {
+      display: grid;
+      gap: 30px;
+    }
+    .footer-brand .brand {
+      margin-bottom: 14px;
+      color: var(--paper);
+    }
+    .footer-brand .brand-mark {
+      border-color: var(--paper);
+    }
+    .footer-brand p {
+      max-width: 42ch;
+      margin: 0;
+      color: rgba(244, 239, 227, 0.72);
+      font-size: 0.86rem;
+      line-height: 1.6;
+    }
+    .footer-grid h2 {
+      margin: 0 0 12px;
+      color: var(--paper);
+      font-size: 0.62rem;
+      font-weight: 900;
+      letter-spacing: 0.13em;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+    .footer-nav ul {
+      display: grid;
+      gap: 7px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .footer-nav a {
+      width: fit-content;
+      padding-block: 4px;
+      border-bottom: 2px solid transparent;
+      color: var(--paper);
+      font-size: 0.86rem;
+      text-decoration: none;
+    }
+    .footer-nav a:hover {
+      border-bottom-color: var(--paper);
+    }
+    .footer-contact p {
+      margin: 0 0 7px;
+      overflow-wrap: anywhere;
+      color: rgba(244, 239, 227, 0.75);
+      font-size: 0.84rem;
+    }
+    .footer-contact a {
+      border-bottom: 2px solid var(--leaf);
+      color: var(--paper);
+      text-decoration: none;
+    }
+    .footer-contact a:hover {
+      border-bottom-color: var(--paper);
+    }
+    .footer-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 30px;
+      padding-top: 18px;
+      border-top: 2px solid rgba(244, 239, 227, 0.28);
+      color: rgba(244, 239, 227, 0.66);
+      font-size: 0.75rem;
+    }
+    .footer-bottom p {
+      margin: 0;
+    }
+    .footer-legal {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .footer-legal a {
+      padding-block: 2px;
+      border-bottom: 1px solid rgba(244, 239, 227, 0.4);
+      color: rgba(244, 239, 227, 0.82);
+      text-decoration: none;
+    }
+    .footer-legal a:hover {
+      border-bottom-color: var(--paper);
+      color: var(--paper);
+    }
+    /* Larger screens */
+    @media (min-width: 600px) {
+      .wrap {
+        width: min(calc(100% - 48px), var(--max));
+      }
+      .brand-name {
+        max-width: 210px;
+        font-size: 0.78rem;
+      }
+      .panel {
+        padding: 24px;
+      }
+    }
+    @media (min-width: 700px) {
+      .footer-bottom {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+    }
+    @media (min-width: 820px) {
+      .calc-grid {
+        grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+        gap: 24px;
+      }
+      .page-hero {
+        padding: 56px 0 34px;
+      }
+      .footer-grid {
+        grid-template-columns: minmax(0, 1.35fr) minmax(150px, 0.55fr) minmax(220px, 0.8fr);
+        gap: 48px;
+      }
+      .site-footer {
+        padding-top: 52px;
+      }
+    }
+    @media (max-width: 860px) {
+      .site-nav ul {
+        display: none;
+      }
+      .site-header .header-inner {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        column-gap: 12px;
+        min-height: 0;
+        padding-block: 6px;
+      }
+      .site-header .brand {
+        width: auto;
+        height: 44px;
+        gap: 8px;
+      }
+      .site-header .brand-mark {
+        flex: 0 0 30px;
+        width: 30px;
+        height: 30px;
+        border-width: 2px;
+      }
+      .site-header .brand-mark svg {
+        width: 17px;
+        height: 17px;
+      }
+      .site-header .brand-name {
+        max-width: 150px;
+        font-size: 0.56rem;
+      }
+      .site-header .site-nav {
+        justify-self: end;
+        gap: 0;
+      }
+      .site-header .site-nav ul {
+        display: none;
+      }
+      .site-header .nav-cta {
+        min-height: 32px;
+        padding: 4px 10px;
+        border-width: 2px;
+        font-size: 0.62rem;
+        letter-spacing: 0.01em;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#konten">Lewati ke konten utama</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html" aria-label="tanihelp by kebunsaku — beranda">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F4EFE3" stroke-width="2" stroke-linecap="square" aria-hidden="true" focusable="false">
+            <path d="M12 20v-8"></path>
+            <path d="M12 15c0-3.6 2.9-6.5 6.5-6.5 0 3.6-2.9 6.5-6.5 6.5Z"></path>
+            <path d="M12 18c0-3.6-2.9-6.5-6.5-6.5 0 3.6 2.9 6.5 6.5 6.5Z"></path>
+          </svg>
+        </span>
+        <span class="brand-name">tanihelp <span class="brand-by">by kebunsaku</span></span>
+      </a>
+      <nav class="site-nav" aria-label="Navigasi utama">
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="index.html#alat">Alat</a></li>
+        </ul>
+        <a class="nav-cta" href="index.html#alat">Coba alat lain</a>
+      </nav>
+    </div>
+  </header>
+  <main id="konten">
+    <section class="page-hero" aria-labelledby="page-title">
+      <div class="wrap">
+        <p class="eyebrow">Kalkulator nutrisi</p>
+        <h1 id="page-title">Resep Nutrisi AB Mix</h1>
+        <p class="page-lede">Pilih jenis tanaman dan isi volume larutan yang ingin dibuat. Kebutuhan bahan untuk larutan A dan larutan B akan dihitung otomatis dari resep dasar per 1 liter.</p>
+      </div>
+    </section>
+    <section class="calc-section" aria-label="Kalkulator resep nutrisi AB Mix">
+      <div class="wrap calc-grid">
+        <form class="panel" id="calc-form" novalidate>
+          <div class="panel-head">
+            <span class="panel-num" aria-hidden="true">01</span>
+            <h2>Input</h2>
+          </div>
+          <div class="field">
+            <label for="crop">Jenis tanaman</label>
+            <div class="select-wrap">
+              <select id="crop" name="crop">
+                <option value="daun" selected>Sayuran daun</option>
+                <option value="buah">Sayuran buah</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="volume">Volume larutan</label>
+            <div class="input-row">
+              <input id="volume" name="volume" type="text" inputmode="decimal" value="1" autocomplete="off" spellcheck="false" aria-describedby="volume-hint">
+              <span class="unit" aria-hidden="true">liter</span>
+            </div>
+            <p class="hint" id="volume-hint">Angka saja, desimal boleh. Contoh: 1 atau 2,5.</p>
+          </div>
+          <p class="note"><strong>Penting:</strong> larutan A dan larutan B dibuat dalam wadah terpisah. Jangan mencampur keduanya dalam bentuk pekat.</p>
+          <noscript>
+            <p class="note">Aktifkan JavaScript agar takaran bahan bisa dihitung otomatis.</p>
+          </noscript>
+        </form>
+        <section class="panel" id="result-panel" aria-labelledby="result-title" tabindex="-1">
+          <div class="panel-head panel-head--split">
+            <div class="panel-head-title">
+              <span class="panel-num" aria-hidden="true">02</span>
+              <h2 id="result-title">Kebutuhan bahan</h2>
+            </div>
+            <div class="stage-switch" id="stage-field" hidden>
+              <div class="tabs" id="stage-tabs" role="tablist" aria-label="Fase tanam">
+                <button class="tab" type="button" role="tab" id="tab-vegetatif" data-stage="vegetatif" aria-selected="true" aria-controls="recipe-panel" tabindex="0">Vegetatif</button>
+                <button class="tab" type="button" role="tab" id="tab-generatif" data-stage="generatif" aria-selected="false" aria-controls="recipe-panel" tabindex="-1">Generatif</button>
+              </div>
+            </div>
+          </div>
+          <div id="recipe-panel">
+            <p class="result-meta" id="result-meta" aria-live="polite"></p>
+            <div class="solution">
+              <div class="solution-head">
+                <h3>Larutan A</h3>
+              </div>
+              <p class="solution-note">Campurkan bahan berikut ke dalam air untuk larutan A.</p>
+              <ul class="ing-list" id="list-a" aria-label="Bahan larutan A"></ul>
+            </div>
+            <div class="solution">
+              <div class="solution-head">
+                <h3>Larutan B</h3>
+              </div>
+              <p class="solution-note">Campurkan bahan berikut ke dalam air untuk larutan B.</p>
+              <ul class="ing-list" id="list-b" aria-label="Bahan larutan B"></ul>
+            </div>
+            <p class="result-foot">Takaran dihitung dari resep dasar per 1 liter lalu dikalikan volume larutan. Bulatkan sesuai alat ukur yang tersedia.</p>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html" aria-label="tanihelp by kebunsaku — beranda">
+            <span class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#F4EFE3" stroke-width="2" stroke-linecap="square" aria-hidden="true" focusable="false">
+                <path d="M12 20v-8"></path>
+                <path d="M12 15c0-3.6 2.9-6.5 6.5-6.5 0 3.6-2.9 6.5-6.5 6.5Z"></path>
+                <path d="M12 18c0-3.6-2.9-6.5-6.5-6.5 0 3.6 2.9 6.5 6.5 6.5Z"></path>
+              </svg>
+            </span>
+            <span class="brand-name">tanihelp <span class="brand-by">by kebunsaku</span></span>
+          </a>
+          <p>Alat online gratis untuk masyarakat umum yang ingin memulai usaha hidroponik dan microgreens.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Navigasi footer">
+          <h2>Jelajahi</h2>
+          <ul>
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="index.html#alat">Alat</a></li>
+            <li><a href="jadwal-tanam.html">Jadwal tanam</a></li>
+            <li><a href="index.html#untuk-siapa">Untuk siapa</a></li>
+          </ul>
+        </nav>
+        <div class="footer-contact">
+          <h2>Kontak</h2>
+          <p><a href="mailto:[NEEDS INPUT: alamat email kontak]">[NEEDS INPUT: alamat email kontak]</a></p>
+          <p>Dibuat untuk pembaca di Indonesia.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 tanihelp by kebunsaku</p>
+        <div class="footer-legal">
+          <a href="[NEEDS INPUT: URL kebijakan privasi]">Kebijakan privasi</a>
+          <span>Takaran bersifat panduan umum.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      "use strict";
+
+      // Resep dasar per 1 liter larutan AB Mix (gram)
+      var RECIPES = {
+        daun: {
+          label: "Sayuran daun",
+          stages: [
+            {
+              id: "vegetatif",
+              label: "Vegetatif",
+              a: [
+                ["Meroke Calnit", 200],
+                ["Fe EDDHA", 4]
+              ],
+              b: [
+                ["Meroke Kalinitra", 68],
+                ["Meroke MKP", 40],
+                ["Meroke SOP", 20],
+                ["Meroke MAG-S", 130],
+                ["Meroke Vitaflex", 8]
+              ]
+            }
+          ]
+        },
+        buah: {
+          label: "Sayuran buah",
+          stages: [
+            {
+              id: "vegetatif",
+              label: "Vegetatif",
+              a: [
+                ["Meroke Calnit", 200],
+                ["Fe EDDHA", 4]
+              ],
+              b: [
+                ["Meroke Kalinitra", 68],
+                ["Meroke MKP", 40],
+                ["Meroke SOP", 20],
+                ["Meroke MAG-S", 130],
+                ["Meroke Vitaflex", 8]
+              ]
+            },
+            {
+              id: "generatif",
+              label: "Generatif",
+              a: [
+                ["Meroke Calnit", 180],
+                ["Fe EDDHA", 4]
+              ],
+              b: [
+                ["Meroke Kalinitra", 125],
+                ["Meroke MKP", 40],
+                ["Meroke SOP", 40],
+                ["Meroke MAG-S", 130],
+                ["Meroke Vitaflex", 8]
+              ]
+            }
+          ]
+        }
+      };
+
+      var form = document.getElementById("calc-form");
+      var cropSelect = document.getElementById("crop");
+      var volumeInput = document.getElementById("volume");
+      var stageField = document.getElementById("stage-field");
+      var tabsWrap = document.getElementById("stage-tabs");
+      var tabs = Array.prototype.slice.call(tabsWrap.querySelectorAll(".tab"));
+      var meta = document.getElementById("result-meta");
+      var listA = document.getElementById("list-a");
+      var listB = document.getElementById("list-b");
+
+      var numberFormat = new Intl.NumberFormat("id-ID", {
+        maximumFractionDigits: 2
+      });
+
+      var state = {
+        crop: cropSelect.value,
+        stage: "vegetatif"
+      };
+
+      function stagesOf(crop) {
+        return RECIPES[crop].stages;
+      }
+
+      function currentStage() {
+        var stages = stagesOf(state.crop);
+        for (var i = 0; i < stages.length; i++) {
+          if (stages[i].id === state.stage) {
+            return stages[i];
+          }
+        }
+        return stages[0];
+      }
+
+      function readVolume() {
+        var raw = String(volumeInput.value).replace(",", ".").trim();
+        var value = parseFloat(raw);
+        return isFinite(value) && value > 0 ? value : 0;
+      }
+
+      function formatGrams(value) {
+        if (!(value > 0)) {
+          return "—";
+        }
+        if (value < 0.01) {
+          return "< 0,01 g";
+        }
+        return numberFormat.format(value) + " g";
+      }
+
+      function renderList(listEl, items, volume) {
+        var html = "";
+        for (var i = 0; i < items.length; i++) {
+          html +=
+            "<li>" +
+            '<span class="ing-name">' + items[i][0] + "</span>" +
+            '<span class="ing-amount">' + formatGrams(items[i][1] * volume) + "</span>" +
+            "</li>";
+        }
+        listEl.innerHTML = html;
+      }
+
+      function renderMeta(stage, volume) {
+        var recipe = RECIPES[state.crop];
+        var parts = [recipe.label];
+        if (recipe.stages.length > 1) {
+          parts.push(stage.label);
+        }
+        parts.push(volume > 0 ? numberFormat.format(volume) + " liter" : "volume belum diisi");
+
+        var html = "";
+        for (var i = 0; i < parts.length; i++) {
+          if (i > 0) {
+            html += '<span class="dot" aria-hidden="true">·</span>';
+          }
+          html += "<span>" + parts[i] + "</span>";
+        }
+        meta.innerHTML = html;
+      }
+
+      function updateTabs() {
+        var multiStage = stagesOf(state.crop).length > 1;
+        stageField.hidden = !multiStage;
+        tabsWrap.setAttribute(
+          "aria-label",
+          "Fase tanam " + RECIPES[state.crop].label.toLowerCase()
+        );
+
+        for (var i = 0; i < tabs.length; i++) {
+          var selected = multiStage && tabs[i].getAttribute("data-stage") === state.stage;
+          tabs[i].setAttribute("aria-selected", selected ? "true" : "false");
+          tabs[i].tabIndex = selected ? 0 : -1;
+        }
+      }
+
+      function render() {
+        var stage = currentStage();
+        var volume = readVolume();
+        updateTabs();
+        renderList(listA, stage.a, volume);
+        renderList(listB, stage.b, volume);
+        renderMeta(stage, volume);
+      }
+
+      function selectStage(stageId, focusTab) {
+        state.stage = stageId;
+        render();
+        if (focusTab) {
+          for (var i = 0; i < tabs.length; i++) {
+            if (tabs[i].getAttribute("data-stage") === stageId) {
+              tabs[i].focus();
+            }
+          }
+        }
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+      });
+
+      cropSelect.addEventListener("change", function () {
+        state.crop = cropSelect.value;
+        state.stage = stagesOf(state.crop)[0].id;
+        render();
+      });
+
+      volumeInput.addEventListener("input", function () {
+        var cleaned = volumeInput.value.replace(/[^0-9.,]/g, "");
+        if (cleaned !== volumeInput.value) {
+          volumeInput.value = cleaned;
+        }
+        render();
+      });
+
+      for (var i = 0; i < tabs.length; i++) {
+        tabs[i].addEventListener("click", function () {
+          selectStage(this.getAttribute("data-stage"), false);
+        });
+
+        tabs[i].addEventListener("keydown", function (event) {
+          var key = event.key;
+          if (key !== "ArrowLeft" && key !== "ArrowRight" && key !== "Home" && key !== "End") {
+            return;
+          }
+          event.preventDefault();
+          var visibleTabs = tabs.filter(function (tab) {
+            return stagesOf(state.crop).some(function (stage) {
+              return stage.id === tab.getAttribute("data-stage");
+            });
+          });
+          var currentIndex = visibleTabs.indexOf(this);
+          var nextIndex = currentIndex;
+          if (key === "ArrowLeft") {
+            nextIndex = (currentIndex - 1 + visibleTabs.length) % visibleTabs.length;
+          } else if (key === "ArrowRight") {
+            nextIndex = (currentIndex + 1) % visibleTabs.length;
+          } else if (key === "Home") {
+            nextIndex = 0;
+          } else if (key === "End") {
+            nextIndex = visibleTabs.length - 1;
+          }
+          selectStage(visibleTabs[nextIndex].getAttribute("data-stage"), true);
+        });
+      }
+
+      render();
+    }());
+  </script>
+</body>
+</html>
