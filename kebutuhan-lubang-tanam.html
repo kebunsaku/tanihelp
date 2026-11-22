@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kebutuhan Lubang Tanam Hidroponik — Kalkulator | tanihelp by kebunsaku</title>
+  <meta name="description" content="Hitung jumlah lubang tanam dan benih hidroponik dari target panen per minggu. Jumlah benih sudah ditambah cadangan 10% untuk benih yang gagal berkecambah.">
+  <meta name="theme-color" content="#F4EFE3">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232F6B4E'/%3E%3Cpath d='M50 79V43M50 51c0-13 10-23 23-23 0 13-10 23-23 23Zm0 12c0-13-10-23-23-23 0 13 10 23 23 23Z' fill='none' stroke='%23F4EFE3' stroke-width='7'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --paper: #F4EFE3;
+      --ink: #171A17;
+      --leaf: #2F6B4E;
+      --max: 1180px;
+      --border: 3px solid var(--ink);
+      --hairline: rgba(23, 26, 23, 0.14);
+    }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 76px;
+    }
+    body {
+      margin: 0;
+      min-width: 280px;
+      color: var(--ink);
+      background-color: var(--paper);
+      background-image:
+        linear-gradient(rgba(23, 26, 23, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23, 26, 23, 0.045) 1px, transparent 1px);
+      background-size: 36px 36px;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    ::selection {
+      color: var(--paper);
+      background: var(--leaf);
+    }
+    h1,
+    h2,
+    h3,
+    .display {
+      font-family: "Arial Black", "Segoe UI Black", system-ui, sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.035em;
+      text-wrap: balance;
+    }
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+    a {
+      color: inherit;
+    }
+    svg {
+      display: block;
+    }
+    :focus-visible {
+      outline: 3px solid var(--leaf);
+      outline-offset: 3px;
+    }
+    .wrap {
+      width: min(calc(100% - 32px), var(--max));
+      margin-inline: auto;
+    }
+    .skip-link {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 100;
+      padding: 10px 16px;
+      border: 3px solid var(--paper);
+      background: var(--ink);
+      color: var(--paper);
+      font-weight: 800;
+      text-decoration: none;
+      transform: translateY(-170%);
+      transition: transform 0.15s ease;
+    }
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: var(--border);
+      background: var(--paper);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 64px;
+      padding-block: 8px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      width: 350px;
+      height: 64px;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .brand-mark {
+      display: grid;
+      flex: 0 0 38px;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border: var(--border);
+      background: var(--leaf);
+    }
+    .brand-mark svg {
+      width: 22px;
+      height: 22px;
+    }
+    .brand-name {
+      max-width: 210px;
+      overflow-wrap: anywhere;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      line-height: 1.18;
+      text-transform: uppercase;
+    }
+    .brand-by {
+      display: block;
+      font-size: 0.78em;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      opacity: 0.72;
+    }
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+    }
+    .site-nav ul {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .site-nav li a {
+      padding-block: 5px;
+      border-bottom: 2px solid transparent;
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .site-nav li a:hover,
+    .site-nav li a:focus-visible {
+      border-bottom-color: var(--ink);
+    }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 8px 14px;
+      border: 3px solid var(--ink);
+      border-radius: 4px;
+      background: var(--leaf);
+      color: var(--paper);
+      font-size: 0.76rem;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-cta:hover {
+      background: var(--ink);
+    }
+    /* Page intro */
+    .page-hero {
+      padding: 36px 0 24px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 7px;
+      margin: 0 0 16px;
+      padding: 6px 10px;
+      border: 2px solid var(--ink);
+      background: var(--paper);
+      font-size: 0.7rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(1.8rem, 7vw, 3.1rem);
+      line-height: 1.04;
+    }
+    .page-lede {
+      max-width: 62ch;
+      margin: 0;
+      font-size: 0.98rem;
+      line-height: 1.65;
+    }
+    /* Tool layout */
+    .tool-section {
+      padding-bottom: 60px;
+    }
+    .calc-grid {
+      display: grid;
+      gap: 18px;
+      align-items: start;
+    }
+    .panel {
+      min-width: 0;
+      padding: 20px;
+      border: var(--border);
+      border-radius: 4px;
+      background: #fff;
+    }
+    .panel-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .panel-num {
+      padding: 2px 6px;
+      border: 2px solid var(--ink);
+      font-size: 0.66rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      line-height: 1.4;
+    }
+    .panel-head h2 {
+      margin: 0;
+      font-size: 1.12rem;
+      line-height: 1.15;
+    }
+    /* Fields */
+    .field {
+      margin-bottom: 18px;
+    }
+    .field:last-child {
+      margin-bottom: 0;
+    }
+    fieldset.field {
+      min-width: 0;
+      margin-inline: 0;
+      padding: 0;
+      border: 0;
+    }
+    .field > label,
+    .field-legend {
+      display: block;
+      margin-bottom: 7px;
+      padding: 0;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+    .select-wrap {
+      position: relative;
+    }
+    .select-wrap select {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      margin: 0;
+      padding: 11px 42px 11px 12px;
+      border: 2px solid var(--ink);
+      border-radius: 4px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 800;
+      line-height: 1.25;
+      cursor: pointer;
+    }
+    .select-wrap::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 16px;
+      width: 9px;
+      height: 9px;
+      border-right: 2px solid var(--ink);
+      border-bottom: 2px solid var(--ink);
+      transform: translateY(-70%) rotate(45deg);
+      pointer-events: none;
+    }
+    .input-row {
+      display: flex;
+      align-items: stretch;
+      border: 2px solid var(--ink);
+      border-radius: 4px;
+      background: #fff;
+    }
+    .input-row:focus-within {
+      outline: 3px solid var(--leaf);
+      outline-offset: 2px;
+    }
+    .input-row input {
+      flex: 1 1 auto;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 11px 12px;
+      border: 0;
+      background: transparent;
+      color: var(--ink);
+      font-family: inherit;
+      font-size: 1.05rem;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+    }
+    .input-row input:focus-visible {
+      outline: none;
+    }
+    .input-row .unit {
+      display: inline-flex;
+      align-items: center;
+      padding: 0 12px;
+      border-left: 2px solid var(--ink);
+      background: var(--paper);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .hint {
+      margin: 7px 0 0;
+      color: rgba(23, 26, 23, 0.64);
+      font-size: 0.74rem;
+      line-height: 1.45;
+    }
+    .choice-group {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      overflow: hidden;
+      border: 2px solid var(--ink);
+      border-radius: 4px;
+      background: var(--paper);
+    }
+    .choice {
+      position: relative;
+      display: flex;
+      align-items: stretch;
+      margin: 0;
+      padding: 0;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .choice + .choice {
+      border-left: 2px solid var(--ink);
+    }
+    .choice input {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .choice-face {
+      display: flex;
+      flex: 1 1 auto;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+      padding: 10px 8px;
+      text-align: center;
+    }
+    .choice:hover .choice-face {
+      background: rgba(47, 107, 78, 0.12);
+    }
+    .choice input:checked + .choice-face {
+      background: var(--leaf);
+      color: var(--paper);
+    }
+    .choice input:checked + .choice-face:hover {
+      background: var(--leaf);
+    }
+    .choice input:focus-visible + .choice-face {
+      outline: 3px solid var(--leaf);
+      outline-offset: -3px;
+    }
+    .note {
+      margin: 18px 0 0;
+      padding: 12px 14px;
+      border: 2px solid var(--ink);
+      border-left: 6px solid var(--leaf);
+      background: var(--paper);
+      font-size: 0.78rem;
+      line-height: 1.5;
+    }
+    .note strong {
+      font-weight: 900;
+    }
+    /* Meta line */
+    .result-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 4px 8px;
+      margin: 0 0 16px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      line-height: 1.5;
+    }
+    .result-meta .dot {
+      color: rgba(23, 26, 23, 0.4);
+    }
+    /* Result cards */
+    .stat-card {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 0;
+      padding: 14px;
+      border: 2px solid var(--ink);
+      border-radius: 4px;
+      background: var(--paper);
+    }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .stat-label {
+      color: rgba(23, 26, 23, 0.62);
+      font-size: 0.8rem;
+      font-weight:800;
+      letter-spacing: 0.09em;
+      line-height: 1.4;
+    }
+    .stat-value {
+      font-family: "Arial Black", "Segoe UI Black", system-ui, sans-serif;
+      font-size: clamp(2rem, 8vw, 2.7rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat-card--seeds .stat-value {
+      color: var(--leaf);
+    }
+    .stat-foot {
+      color: rgba(23, 26, 23, 0.64);
+      font-size: 0.72rem;
+      line-height: 1.45;
+    }
+    .detail-title {
+      margin: 22px 0 8px;
+      font-size: 0.62rem;
+      font-weight: 900;
+      letter-spacing: 0.09em;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+    .detail {
+      margin: 0;
+    }
+    .detail-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 2px 12px;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .detail-row:first-child {
+      padding-top: 0;
+    }
+    .detail-row:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+    .detail-row dt {
+      color: rgba(23, 26, 23, 0.7);
+      font-size: 0.78rem;
+      line-height: 1.45;
+    }
+    .detail-row dd {
+      margin: 0;
+      font-size: 0.82rem;
+      font-weight: 900;
+      line-height: 1.45;
+      font-variant-numeric: tabular-nums;
+    }
+    .sched {
+      margin: 0;
+    }
+    .sched-row {
+      padding: 7px 0;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .sched-row:first-child {
+      padding-top: 0;
+    }
+    .sched-row:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+    .sched-row dt {
+      color: rgba(23, 26, 23, 0.6);
+      font-size: 0.6rem;
+      font-weight: 900;
+      letter-spacing: 0.07em;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+    .sched-row dd {
+      margin: 1px 0 0;
+      font-size: 0.82rem;
+      font-weight: 900;
+      line-height: 1.35;
+      font-variant-numeric: tabular-nums;
+    }
+    .sched-row--harvest {
+      padding-left: 8px;
+      border-left: 3px solid var(--leaf);
+    }
+    .sched-row--harvest dt,
+    .sched-row--harvest dd {
+      color: var(--leaf);
+    }
+    .result-foot {
+      margin: 20px 0 0;
+      padding-top: 14px;
+      border-top: 1px solid var(--hairline);
+      color: rgba(23, 26, 23, 0.66);
+      font-size: 0.74rem;
+      line-height: 1.5;
+    }
+    /* Footer */
+    .site-footer {
+      padding: 40px 0 22px;
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .footer-grid {
+      display: grid;
+      gap: 30px;
+    }
+    .footer-brand .brand {
+      margin-bottom: 14px;
+      color: var(--paper);
+    }
+    .footer-brand .brand-mark {
+      border-color: var(--paper);
+    }
+    .footer-brand p {
+      max-width: 42ch;
+      margin: 0;
+      color: rgba(244, 239, 227, 0.72);
+      font-size: 0.86rem;
+      line-height: 1.6;
+    }
+    .footer-grid h2 {
+      margin: 0 0 12px;
+      color: var(--paper);
+      font-size: 0.62rem;
+      font-weight: 900;
+      letter-spacing: 0.13em;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+    .footer-nav ul {
+      display: grid;
+      gap: 7px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .footer-nav a {
+      width: fit-content;
+      padding-block: 4px;
+      border-bottom: 2px solid transparent;
+      color: var(--paper);
+      font-size: 0.86rem;
+      text-decoration: none;
+    }
+    .footer-nav a:hover {
+      border-bottom-color: var(--paper);
+    }
+    .footer-contact p {
+      margin: 0 0 7px;
+      overflow-wrap: anywhere;
+      color: rgba(244, 239, 227, 0.75);
+      font-size: 0.84rem;
+    }
+    .footer-contact a {
+      border-bottom: 2px solid var(--leaf);
+      color: var(--paper);
+      text-decoration: none;
+    }
+    .footer-contact a:hover {
+      border-bottom-color: var(--paper);
+    }
+    .footer-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 30px;
+      padding-top: 18px;
+      border-top: 2px solid rgba(244, 239, 227, 0.28);
+      color: rgba(244, 239, 227, 0.66);
+      font-size: 0.75rem;
+    }
+    .footer-bottom p {
+      margin: 0;
+    }
+    .footer-legal {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .footer-legal a {
+      padding-block: 2px;
+      border-bottom: 1px solid rgba(244, 239, 227, 0.4);
+      color: rgba(244, 239, 227, 0.82);
+      text-decoration: none;
+    }
+    .footer-legal a:hover {
+      border-bottom-color: var(--paper);
+      color: var(--paper);
+    }
+    /* Larger screens */
+    @media (min-width: 600px) {
+      .wrap {
+        width: min(calc(100% - 48px), var(--max));
+      }
+      .brand-name {
+        max-width: 210px;
+        font-size: 0.78rem;
+      }
+      .panel {
+        padding: 24px;
+      }
+    }
+    @media (min-width: 700px) {
+      .footer-bottom {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+    }
+    @media (min-width: 820px) {
+      .calc-grid {
+        grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+        gap: 24px;
+      }
+      .page-hero {
+        padding: 56px 0 34px;
+      }
+      .footer-grid {
+        grid-template-columns: minmax(0, 1.35fr) minmax(150px, 0.55fr) minmax(220px, 0.8fr);
+        gap: 48px;
+      }
+      .site-footer {
+        padding-top: 52px;
+      }
+    }
+    @media (max-width: 860px) {
+      .site-nav ul {
+        display: none;
+      }
+      .site-header .header-inner {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        column-gap: 12px;
+        min-height: 0;
+        padding-block: 6px;
+      }
+      .site-header .brand {
+        width: auto;
+        height: 44px;
+        gap: 8px;
+      }
+      .site-header .brand-mark {
+        flex: 0 0 30px;
+        width: 30px;
+        height: 30px;
+        border-width: 2px;
+      }
+      .site-header .brand-mark svg {
+        width: 17px;
+        height: 17px;
+      }
+      .site-header .brand-name {
+        max-width: 150px;
+        font-size: 0.56rem;
+      }
+      .site-header .site-nav {
+        justify-self: end;
+        gap: 0;
+      }
+      .site-header .site-nav ul {
+        display: none;
+      }
+      .site-header .nav-cta {
+        min-height: 32px;
+        padding: 4px 10px;
+        border-width: 2px;
+        font-size: 0.62rem;
+        letter-spacing: 0.01em;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#konten">Lewati ke konten utama</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html" aria-label="tanihelp by kebunsaku — beranda">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F4EFE3" stroke-width="2" stroke-linecap="square" aria-hidden="true" focusable="false">
+            <path d="M12 20v-8"></path>
+            <path d="M12 15c0-3.6 2.9-6.5 6.5-6.5 0 3.6-2.9 6.5-6.5 6.5Z"></path>
+            <path d="M12 18c0-3.6-2.9-6.5-6.5-6.5 0 3.6 2.9 6.5 6.5 6.5Z"></path>
+          </svg>
+        </span>
+        <span class="brand-name">tanihelp <span class="brand-by">by kebunsaku</span></span>
+      </a>
+      <nav class="site-nav" aria-label="Navigasi utama">
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="index.html#alat">Alat</a></li>
+        </ul>
+        <a class="nav-cta" href="index.html#alat">Coba alat lain</a>
+      </nav>
+    </div>
+  </header>
+  <main id="konten">
+    <section class="page-hero" aria-labelledby="page-title">
+      <div class="wrap">
+        <p class="eyebrow">Kebutuhan tanam</p>
+        <h1 id="page-title">Kebutuhan Lubang Tanam</h1>
+        <p class="page-lede">Pilih tanaman dan isi target panen per minggu. Jumlah lubang tanam dan benih yang perlu disiapkan akan dihitung otomatis, termasuk cadangan 10% untuk benih yang gagal berkecambah.</p>
+      </div>
+    </section>
+    <section class="tool-section" aria-label="Kalkulator kebutuhan lubang tanam">
+      <div class="wrap calc-grid">
+        <form class="panel" id="calc-form" novalidate>
+          <div class="panel-head">
+            <span class="panel-num" aria-hidden="true">01</span>
+            <h2>Input</h2>
+          </div>
+          <div class="field">
+            <label for="crop">Tanaman</label>
+            <div class="select-wrap">
+              <select id="crop" name="crop"></select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="target">Target panen per minggu</label>
+            <div class="input-row">
+              <input id="target" name="target" type="text" inputmode="decimal" value="1" autocomplete="off" spellcheck="false" aria-describedby="target-hint">
+              <span class="unit" aria-hidden="true">kg</span>
+            </div>
+            <p class="hint" id="target-hint">Angka saja, desimal boleh. Contoh: 1 atau 2,5.</p>
+          </div>
+          <p class="result-meta" id="input-meta" aria-live="polite"></p>
+          <p class="note"><strong>Cadangan benih:</strong> sekitar 10% benih biasanya gagal berkecambah, jadi jumlah benih yang dihitung sudah ditambah 10%.</p>
+          <noscript>
+            <p class="note">Aktifkan JavaScript agar kebutuhan lubang tanam bisa dihitung otomatis.</p>
+          </noscript>
+        </form>
+        <section class="panel" id="result-panel" aria-labelledby="result-title">
+          <div class="panel-head">
+            <span class="panel-num" aria-hidden="true">02</span>
+            <h2 id="result-title">Kebutuhan tanam</h2>
+          </div>
+          <p class="result-meta" id="result-meta" aria-live="polite"></p>
+          <div class="stat-grid">
+            <div class="stat-card">
+              <span class="stat-label">Lubang tanam</span>
+              <span class="stat-value" id="holes-value">—</span>
+              <span class="stat-foot">per minggu</span>
+            </div>
+            <div class="stat-card stat-card--seeds">
+              <span class="stat-label">Benih</span>
+              <span class="stat-value" id="seeds-value">—</span>
+              <span class="stat-foot" id="seeds-foot">termasuk cadangan 10%</span>
+            </div>
+          </div>
+          <h3 class="detail-title">Rincian hitungan</h3>
+          <dl class="detail" id="detail-list"></dl>
+          <p class="note" id="batch-note"></p>
+          <p class="result-foot">Angka dibulatkan ke atas supaya hasil panen tidak kurang dari target. Berat per tanaman bisa berbeda tergantung varietas dan cara tanam.</p>
+        </section>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html" aria-label="tanihelp by kebunsaku — beranda">
+            <span class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#F4EFE3" stroke-width="2" stroke-linecap="square" aria-hidden="true" focusable="false">
+                <path d="M12 20v-8"></path>
+                <path d="M12 15c0-3.6 2.9-6.5 6.5-6.5 0 3.6-2.9 6.5-6.5 6.5Z"></path>
+                <path d="M12 18c0-3.6-2.9-6.5-6.5-6.5 0 3.6 2.9 6.5 6.5 6.5Z"></path>
+              </svg>
+            </span>
+            <span class="brand-name">tanihelp <span class="brand-by">by kebunsaku</span></span>
+          </a>
+          <p>Alat online gratis untuk masyarakat umum yang ingin memulai usaha hidroponik dan microgreens.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Navigasi footer">
+          <h2>Jelajahi</h2>
+          <ul>
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="index.html#alat">Alat</a></li>
+            <li><a href="jadwal-tanam.html">Jadwal tanam</a></li>
+            <li><a href="resep-nutrisi-ab-mix.html">Resep nutrisi</a></li>
+            <li><a href="index.html#untuk-siapa">Untuk siapa</a></li>
+          </ul>
+        </nav>
+        <div class="footer-contact">
+          <h2>Kontak</h2>
+          <p><a href="mailto:[NEEDS INPUT: alamat email kontak]">[NEEDS INPUT: alamat email kontak]</a></p>
+          <p>Dibuat untuk pembaca di Indonesia.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 tanihelp by kebunsaku</p>
+        <div class="footer-legal">
+          <a href="[NEEDS INPUT: URL kebijakan privasi]">Kebijakan privasi</a>
+          <span>Hitungan bersifat panduan umum.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      "use strict";
+
+      // ============================================================
+      // Data tanaman. Tambahkan tanaman lain di objek ini.
+      // weight = berat rata-rata per tanaman saat panen (gram)
+      // Contoh menambah:
+      // "pakcoy": { name: "Pakcoy", weight: 150 },
+      // ============================================================
+      var CROPS = {
+
+        "selada-keriting": {
+          name: "Selada",
+          weight: 200
+        },
+        "selada-romaine": {
+          name: "Selada romaine",
+          weight: 200
+        },
+        "bayam": {
+          name: "Bayam",
+          weight: 80
+        },
+        "kangkung": {
+          name: "Kangkung",
+          weight: 80
+        },
+        "pakcoy": {
+          name: "Pakcoy",
+          weight: 120
+        },
+        "kailan": {
+          name: "Sawi-sawian",
+          weight: 150
+        },
+
+      };
+
+      // Sekitar 10% benih diperkirakan gagal berkecambah.
+      var GERMINATION_BUFFER = 0.1;
+      // Batch mingguan supaya panen bisa berlangsung tiap minggu.
+      var BATCH_COUNT = 4;
+
+      var form = document.getElementById("calc-form");
+      var cropSelect = document.getElementById("crop");
+      var targetInput = document.getElementById("target");
+      var inputMeta = document.getElementById("input-meta");
+      var resultMeta = document.getElementById("result-meta");
+      var holesValue = document.getElementById("holes-value");
+      var seedsValue = document.getElementById("seeds-value");
+      var seedsFoot = document.getElementById("seeds-foot");
+      var detailList = document.getElementById("detail-list");
+      var batchNote = document.getElementById("batch-note");
+
+      var numberFormat = new Intl.NumberFormat("id-ID", {
+        maximumFractionDigits: 2
+      });
+
+      /* ---------- helpers ---------- */
+
+      // Hanya angka dan satu tanda desimal (titik atau koma).
+      function cleanNumber(value) {
+        var cleaned = String(value).replace(/[^0-9.,]/g, "");
+        var separator = cleaned.search(/[.,]/);
+        if (separator !== -1) {
+          cleaned =
+            cleaned.slice(0, separator + 1) +
+            cleaned.slice(separator + 1).replace(/[.,]/g, "");
+        }
+        return cleaned;
+      }
+
+      function readTarget() {
+        var value = parseFloat(cleanNumber(targetInput.value).replace(",", "."));
+        return isFinite(value) && value > 0 ? value : 0;
+      }
+
+      function currentCrop() {
+        var crop = CROPS[cropSelect.value];
+        return crop || CROPS[Object.keys(CROPS)[0]];
+      }
+
+      function metaHtml(parts) {
+        var html = "";
+        for (var i = 0; i < parts.length; i++) {
+          if (i > 0) {
+            html += '<span class="dot" aria-hidden="true">·</span>';
+          }
+          html += "<span>" + parts[i] + "</span>";
+        }
+        return html;
+      }
+
+      function kgText(value) {
+        return numberFormat.format(value) + " kg";
+      }
+
+      function gramText(value) {
+        return numberFormat.format(value) + " g";
+      }
+
+      function detailRow(label, value) {
+        return '<div class="detail-row"><dt>' + label + "</dt><dd>" + value + "</dd></div>";
+      }
+
+      /* ---------- render ---------- */
+
+      function render() {
+        var crop = currentCrop();
+        var target = readTarget();
+        var targetGrams = target * 1000;
+        var holes = target > 0 ? Math.ceil(targetGrams / crop.weight) : 0;
+        var seeds = target > 0 ? Math.ceil(holes * (1 + GERMINATION_BUFFER)) : 0;
+        var totalHoles = holes * BATCH_COUNT;
+        var totalSeeds = seeds * BATCH_COUNT;
+
+        inputMeta.innerHTML = metaHtml([
+          target > 0
+            ? kgText(target) + " = " + gramText(targetGrams) + " per minggu"
+            : "Target panen belum diisi"
+        ]);
+
+        resultMeta.innerHTML = metaHtml([
+          crop.name,
+          target > 0 ? "target " + kgText(target) + " per minggu" : "target belum diisi",
+          gramText(crop.weight) + " per tanaman"
+        ]);
+
+        holesValue.textContent = holes > 0 ? numberFormat.format(holes) : "—";
+        seedsValue.textContent = seeds > 0 ? numberFormat.format(seeds) : "—";
+        seedsFoot.textContent =
+          seeds > 0
+            ? "termasuk cadangan " + numberFormat.format(seeds - holes) + " benih"
+            : "termasuk cadangan 10%";
+
+        detailList.innerHTML =
+          detailRow("Berat per tanaman", gramText(crop.weight)) +
+          detailRow(
+            "Target panen",
+            target > 0 ? kgText(target) + " (" + gramText(targetGrams) + ")" : "—"
+          ) +
+          detailRow("Lubang tanam", holes > 0 ? numberFormat.format(holes) + " lubang" : "—") +
+          detailRow(
+            "Benih + cadangan 10%",
+            seeds > 0 ? numberFormat.format(seeds) + " benih" : "—"
+          );
+
+        if (holes > 0) {
+          batchNote.innerHTML =
+            "<strong>Untuk " + BATCH_COUNT + " batch mingguan:</strong> siapkan total " +
+            numberFormat.format(totalHoles) + " lubang tanam dan " +
+            numberFormat.format(totalSeeds) + " benih, supaya panen tiap minggu tetap " +
+            kgText(target) + ".";
+        } else {
+          batchNote.innerHTML =
+            "<strong>Untuk " + BATCH_COUNT +
+            " batch mingguan:</strong> isi target panen per minggu untuk melihat total " +
+            "kebutuhan lubang tanam dan benih.";
+        }
+      }
+
+      /* ---------- init ---------- */
+
+      Object.keys(CROPS).forEach(function (key) {
+        var option = document.createElement("option");
+        option.value = key;
+        option.textContent = CROPS[key].name;
+        cropSelect.appendChild(option);
+      });
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+      });
+
+      targetInput.addEventListener("input", function () {
+        var cleaned = cleanNumber(targetInput.value);
+        if (cleaned !== targetInput.value) {
+          targetInput.value = cleaned;
+        }
+        render();
+      });
+
+      cropSelect.addEventListener("change", render);
+
+      render();
+    }());
+  </script>
+</body>
+</html>
