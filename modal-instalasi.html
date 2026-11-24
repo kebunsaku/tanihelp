@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modal Instalasi Hidroponik — Kalkulator | tanihelp by kebunsaku</title>
+  <meta name="description" content="Perkirakan modal awal membuat instalasi hidroponik NFT, DFT, atau rakit apung sesuai jumlah lubang tanam dan jarak tanam yang dipilih.">
+  <meta name="theme-color" content="#F4EFE3">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232F6B4E'/%3E%3Cpath d='M50 79V43M50 51c0-13 10-23 23-23 0 13-10 23-23 23Zm0 12c0-13-10-23-23-23 0 13 10 23 23 23Z' fill='none' stroke='%23F4EFE3' stroke-width='7'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --paper: #F4EFE3;
+      --ink: #171A17;
+      --leaf: #2F6B4E;
+      --max: 1180px;
+      --border: 3px solid var(--ink);
+      --hairline: rgba(23, 26, 23, 0.14);
+    }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 76px;
+    }
+    body {
+      margin: 0;
+      min-width: 280px;
+      color: var(--ink);
+      background-color: var(--paper);
+      background-image:
+        linear-gradient(rgba(23, 26, 23, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23, 26, 23, 0.045) 1px, transparent 1px);
+      background-size: 36px 36px;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    ::selection {
+      color: var(--paper);
+      background: var(--leaf);
+    }
+    h1,
+    h2,
+    h3,
+    .display {
+      font-family: "Arial Black", "Segoe UI Black", system-ui, sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.035em;
+      text-wrap: balance;
+    }
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+    a {
+      color: inherit;
+    }
+    svg {
+      display: block;
+    }
+    :focus-visible {
+      outline: 3px solid var(--leaf);
+      outline-offset: 3px;
+    }
+    .wrap {
+      width: min(calc(100% - 32px), var(--max));
+      margin-inline: auto;
+    }
+    .skip-link {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 100;
+      padding: 10px 16px;
+      border: 3px solid var(--paper);
+      background: var(--ink);
+      color: var(--paper);
+      font-weight: 800;
+      text-decoration: none;
+      transform: translateY(-170%);
+      transition: transform 0.15s ease;
+    }
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: var(--border);
+      background: var(--paper);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 64px;
+      padding-block: 8px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      width: 350px;
+      height: 64px;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .brand-mark {
+      display: grid;
+      flex: 0 0 38px;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border: var(--border);
+      background: var(--leaf);
+    }
+    .brand-mark svg {
+      width: 22px;
+      height: 22px;
+    }
+    .brand-name {
+      max-width: 210px;
+      overflow-wrap: anywhere;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      line-height: 1.18;
+      text-transform: uppercase;
+    }
+    .brand-by {
+      display: block;
+      font-size: 0.78em;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      opacity: 0.72;
+    }
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+    }
+    .site-nav ul {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .site-nav li a {
+      padding-block: 5px;
+      border-bottom: 2px solid transparent;
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .site-nav li a:hover,
+    .site-nav li a:focus-visible {
+      border-bottom-color: var(--ink);
+    }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 8px 14px;
+      border: 3px solid var(--ink);
+      border-radius: 4px;
+      background: var(--leaf);
+      color: var(--paper);
+      font-size: 0.76rem;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-cta:hover {
+      background: var(--ink);
+    }
+    /* Page intro */
+    .page-hero {
+      padding: 36px 0 24px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 7px;
+      margin: 0 0 16px;
+      padding: 6px 10px;
+      border: 2px solid var(--ink);
+      background: var(--paper);
+      font-size: 0.7rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(1.8rem, 7vw, 3.1rem);
+      line-height: 1.04;
+    }
+    .page-lede {
+      max-width: 62ch;
+      margin: 0;
+      font-size: 0.98rem;
+      line-height: 1.65;
+    }
+    /* Tool layout */
+    .tool-section {
+      padding-bottom: 60px;
+    }
+    .calc-grid {
+      display: grid;
+      gap: 18px;
+      align-items: start;
+    }
+    .panel {
+      min-width: 0;
+      padding: 20px;
+      border: var(--border);
+      border-radius: 4px;
+      background: #fff;
+    }
+    .panel-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .panel-num {
+      padding: 2px 6px;
+      border: 2px solid var(--ink);
+      font-size: 0.66rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      line-height: 1.4;
+    }
+    .panel-head h2 {
+      margin: 0;
+      font-size: 1.12rem;
+      line-height: 1.15;
+    }
+    /* Fields */
+    .field {
+      margin-bottom: 18px;
+    }
+    .field:last-child {
+      margin-bottom: 0;
+    }
+    fieldset.field {
+      min-width: 0;
+      margin-inline: 0;
+      padding: 0;
+      border: 0;
+    }
+    .field > label,
+    .field-legend {
+      display: block;
+      margin-bottom: 7px;
+      padding: 0;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+    .select-wrap {
+      position: relative;
+    }
+    .select-wrap select {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      margin: 0;
+      padding: 11px 42px 11px 12px;
+      border: 2px solid var(--ink);
+      border-radius: 4px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 800;
+      line-height: 1.25;
+      cursor: pointer;
+    }
+    .select-wrap::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 16px;
+      width: 9px;
+      height: 9px;
+      border-right: 2px solid var(--ink);
+      border-bottom: 2px solid var(--ink);
+      transform: translateY(-70%) rotate(45deg);
+      pointer-events: none;
+    }
+    .input-row {
+      display: flex;
+      align-items: stretch;
+      border: 2px solid var(--ink);
+      border-radius: 4px;
+      background: #fff;
+    }
+    .input-row:focus-within {
+      outline: 3px solid var(--leaf);
+      outline-offset: 2px;
+    }
+    .input-row input {
+      flex: 1 1 auto;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 11px 12px;
+      border: 0;
+      background: transparent;
+      color: var(--ink);
+      font-family: inherit;
+      font-size: 1.05rem;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+    }
+    .input-row input:focus-visible {
+      outline: none;
+    }
+    .input-row .unit {
+      display: inline-flex;
+      align-items: center;
+      padding: 0 12px;
+      border-left: 2px solid var(--ink);
+      background: var(--paper);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .hint {
+      margin: 7px 0 0;
+      color: rgba(23, 26, 23, 0.64);
+      font-size: 0.74rem;
+      line-height: 1.45;
+    }
+    .choice-group {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      overflow: hidden;
+      border: 2px solid var(--ink);
+      border-radius: 4px;
+      background: var(--paper);
+    }
+    .choice {
+      position: relative;
+      display: flex;
+      align-items: stretch;
+      margin: 0;
+      padding: 0;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .choice + .choice {
+      border-left: 2px solid var(--ink);
+    }
+    .choice input {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .choice-face {
+      display: flex;
+      flex: 1 1 auto;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+      padding: 10px 8px;
+      text-align: center;
+    }
+    .choice:hover .choice-face {
+      background: rgba(47, 107, 78, 0.12);
+    }
+    .choice input:checked + .choice-face {
+      background: var(--leaf);
+      color: var(--paper);
+    }
+    .choice input:checked + .choice-face:hover {
+      background: var(--leaf);
+    }
+    .choice input:focus-visible + .choice-face {
+      outline: 3px solid var(--leaf);
+      outline-offset: -3px;
+    }
+    .choice-group--three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .choice-face--stack {
+      flex-direction: column;
+      gap: 2px;
+      padding: 9px 6px;
+    }
+    .choice-note {
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      line-height: 1.35;
+      text-transform: none;
+      opacity: 0.72;
+    }
+    /* Ilustrasi sistem */
+    .system-figure {
+      margin: 0 0 18px;
+      padding: 12px 12px 10px;
+      border: 2px solid var(--ink);
+      border-radius: 4px;
+      background: var(--paper);
+    }
+    .system-figure[hidden] {
+      display: none;
+    }
+    .system-figure svg {
+      width: 100%;
+      height: auto;
+    }
+    .system-caption {
+      margin-top: 8px;
+      padding-top: 10px;
+      border-top: 1px solid var(--hairline);
+    }
+    .system-name {
+      margin: 0 0 4px;
+      font-size: 0.92rem;
+      line-height: 1.25;
+    }
+    .system-name span {
+      display: block;
+      margin-top: 3px;
+      color: rgba(23, 26, 23, 0.6);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 0.6rem;
+      font-weight: 900;
+      letter-spacing: 0.09em;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+    .system-caption p {
+      margin: 0;
+      font-size: 0.78rem;
+      line-height: 1.5;
+    }
+    .hint-link {
+      color: var(--leaf);
+      font-weight: 900;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .hint-link:hover {
+      color: var(--ink);
+    }
+    .note {
+      margin: 18px 0 0;
+      padding: 12px 14px;
+      border: 2px solid var(--ink);
+      border-left: 6px solid var(--leaf);
+      background: var(--paper);
+      font-size: 0.78rem;
+      line-height: 1.5;
+    }
+    .note strong {
+      font-weight: 900;
+    }
+    /* Meta line */
+    .result-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 4px 8px;
+      margin: 0 0 16px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      line-height: 1.5;
+    }
+    .result-meta .dot {
+      color: rgba(23, 26, 23, 0.4);
+    }
+    /* Result cards */
+    .total-line {
+      margin: 0 0 18px;
+      font-size: 0.86rem;
+      line-height: 1.5;
+    }
+    .total-line strong {
+      color: var(--leaf);
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+    }
+    /* Rincian biaya */
+    .capacity-line {
+      margin: -6px 0 16px;
+      color: rgba(23, 26, 23, 0.66);
+      font-size: 0.78rem;
+      line-height: 1.5;
+    }
+    .capacity-line strong {
+      color: var(--leaf);
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+    }
+    .cost-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      border-top: 2px solid var(--ink);
+    }
+    .cost-group {
+      margin: 0;
+      padding: 12px 0 4px;
+      color: rgba(23, 26, 23, 0.6);
+      font-size: 0.6rem;
+      font-weight: 900;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+    .cost-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .cost-row:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+    .cost-name {
+      display: block;
+      font-size: 0.84rem;
+      font-weight: 900;
+      line-height: 1.35;
+    }
+    .cost-detail {
+      display: block;
+      color: rgba(23, 26, 23, 0.62);
+      font-size: 0.72rem;
+      line-height: 1.4;
+    }
+    .cost-amount {
+      flex: 0 0 auto;
+      font-size: 0.84rem;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .cost-empty {
+      padding: 12px 0;
+      color: rgba(23, 26, 23, 0.64);
+      font-size: 0.78rem;
+      line-height: 1.5;
+    }
+    .extra-field {
+      margin-top: 18px;
+    }
+    .total-block {
+      margin-top: 18px;
+      padding: 14px;
+      border: 2px solid var(--ink);
+      border-radius: 4px;
+      background: var(--paper);
+    }
+    .total-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 3px 0;
+      font-size: 0.78rem;
+      line-height: 1.45;
+    }
+    .total-row span:last-child {
+      flex: 0 0 auto;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .total-row--grand {
+      margin-top: 8px;
+      padding-top: 10px;
+      border-top: 2px solid var(--ink);
+    }
+    .total-row--grand span:first-child {
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .total-row--grand span:last-child {
+      color: var(--leaf);
+      font-family: "Arial Black", "Segoe UI Black", system-ui, sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+    }
+    .sched {
+      margin: 0;
+    }
+    .sched-row {
+      padding: 7px 0;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .sched-row:first-child {
+      padding-top: 0;
+    }
+    .sched-row:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+    .sched-row dt {
+      color: rgba(23, 26, 23, 0.6);
+      font-size: 0.6rem;
+      font-weight: 900;
+      letter-spacing: 0.07em;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+    .sched-row dd {
+      margin: 1px 0 0;
+      font-size: 0.82rem;
+      font-weight: 900;
+      line-height: 1.35;
+      font-variant-numeric: tabular-nums;
+    }
+    .sched-row--harvest {
+      padding-left: 8px;
+      border-left: 3px solid var(--leaf);
+    }
+    .sched-row--harvest dt,
+    .sched-row--harvest dd {
+      color: var(--leaf);
+    }
+    .result-foot {
+      margin: 20px 0 0;
+      padding-top: 14px;
+      border-top: 1px solid var(--hairline);
+      color: rgba(23, 26, 23, 0.66);
+      font-size: 0.74rem;
+      line-height: 1.5;
+    }
+    /* Footer */
+    .site-footer {
+      padding: 40px 0 22px;
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .footer-grid {
+      display: grid;
+      gap: 30px;
+    }
+    .footer-brand .brand {
+      margin-bottom: 14px;
+      color: var(--paper);
+    }
+    .footer-brand .brand-mark {
+      border-color: var(--paper);
+    }
+    .footer-brand p {
+      max-width: 42ch;
+      margin: 0;
+      color: rgba(244, 239, 227, 0.72);
+      font-size: 0.86rem;
+      line-height: 1.6;
+    }
+    .footer-grid h2 {
+      margin: 0 0 12px;
+      color: var(--paper);
+      font-size: 0.62rem;
+      font-weight: 900;
+      letter-spacing: 0.13em;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+    .footer-nav ul {
+      display: grid;
+      gap: 7px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .footer-nav a {
+      width: fit-content;
+      padding-block: 4px;
+      border-bottom: 2px solid transparent;
+      color: var(--paper);
+      font-size: 0.86rem;
+      text-decoration: none;
+    }
+    .footer-nav a:hover {
+      border-bottom-color: var(--paper);
+    }
+    .footer-contact p {
+      margin: 0 0 7px;
+      overflow-wrap: anywhere;
+      color: rgba(244, 239, 227, 0.75);
+      font-size: 0.84rem;
+    }
+    .footer-contact a {
+      border-bottom: 2px solid var(--leaf);
+      color: var(--paper);
+      text-decoration: none;
+    }
+    .footer-contact a:hover {
+      border-bottom-color: var(--paper);
+    }
+    .footer-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 30px;
+      padding-top: 18px;
+      border-top: 2px solid rgba(244, 239, 227, 0.28);
+      color: rgba(244, 239, 227, 0.66);
+      font-size: 0.75rem;
+    }
+    .footer-bottom p {
+      margin: 0;
+    }
+    .footer-legal {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .footer-legal a {
+      padding-block: 2px;
+      border-bottom: 1px solid rgba(244, 239, 227, 0.4);
+      color: rgba(244, 239, 227, 0.82);
+      text-decoration: none;
+    }
+    .footer-legal a:hover {
+      border-bottom-color: var(--paper);
+      color: var(--paper);
+    }
+    /* Larger screens */
+    @media (min-width: 600px) {
+      .wrap {
+        width: min(calc(100% - 48px), var(--max));
+      }
+      .brand-name {
+        max-width: 210px;
+        font-size: 0.78rem;
+      }
+      .panel {
+        padding: 24px;
+      }
+    }
+    @media (min-width: 700px) {
+      .footer-bottom {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+    }
+    @media (min-width: 820px) {
+      .calc-grid {
+        grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+        gap: 24px;
+      }
+      .page-hero {
+        padding: 56px 0 34px;
+      }
+      .footer-grid {
+        grid-template-columns: minmax(0, 1.35fr) minmax(150px, 0.55fr) minmax(220px, 0.8fr);
+        gap: 48px;
+      }
+      .site-footer {
+        padding-top: 52px;
+      }
+    }
+    @media (max-width: 860px) {
+      .site-nav ul {
+        display: none;
+      }
+      .site-header .header-inner {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        column-gap: 12px;
+        min-height: 0;
+        padding-block: 6px;
+      }
+      .site-header .brand {
+        width: auto;
+        height: 44px;
+        gap: 8px;
+      }
+      .site-header .brand-mark {
+        flex: 0 0 30px;
+        width: 30px;
+        height: 30px;
+        border-width: 2px;
+      }
+      .site-header .brand-mark svg {
+        width: 17px;
+        height: 17px;
+      }
+      .site-header .brand-name {
+        max-width: 150px;
+        font-size: 0.56rem;
+      }
+      .site-header .site-nav {
+        justify-self: end;
+        gap: 0;
+      }
+      .site-header .site-nav ul {
+        display: none;
+      }
+      .site-header .nav-cta {
+        min-height: 32px;
+        padding: 4px 10px;
+        border-width: 2px;
+        font-size: 0.62rem;
+        letter-spacing: 0.01em;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#konten">Lewati ke konten utama</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html" aria-label="tanihelp by kebunsaku — beranda">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F4EFE3" stroke-width="2" stroke-linecap="square" aria-hidden="true" focusable="false">
+            <path d="M12 20v-8"></path>
+            <path d="M12 15c0-3.6 2.9-6.5 6.5-6.5 0 3.6-2.9 6.5-6.5 6.5Z"></path>
+            <path d="M12 18c0-3.6-2.9-6.5-6.5-6.5 0 3.6 2.9 6.5 6.5 6.5Z"></path>
+          </svg>
+        </span>
+        <span class="brand-name">tanihelp <span class="brand-by">by kebunsaku</span></span>
+      </a>
+      <nav class="site-nav" aria-label="Navigasi utama">
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="index.html#alat">Alat</a></li>
+        </ul>
+        <a class="nav-cta" href="index.html#alat">Coba alat lain</a>
+      </nav>
+    </div>
+  </header>
+  <main id="konten">
+    <section class="page-hero" aria-labelledby="page-title">
+      <div class="wrap">
+        <p class="eyebrow">Modal instalasi</p>
+        <h1 id="page-title">Modal Instalasi</h1>
+        <p class="page-lede">Pilih sistem hidroponik, jumlah lubang tanam, dan jarak tanam. Panjang talang, pipa, atau rakit yang dibutuhkan akan dihitung otomatis sebagai dasar perkiraan modal.</p>
+      </div>
+    </section>
+    <section class="tool-section" aria-label="Kalkulator modal instalasi hidroponik">
+      <div class="wrap calc-grid">
+        <form class="panel" id="calc-form" novalidate>
+          <div class="panel-head">
+            <span class="panel-num" aria-hidden="true">01</span>
+            <h2>Input</h2>
+          </div>
+          <fieldset class="field">
+            <legend class="field-legend">Sistem hidroponik</legend>
+            <div class="choice-group choice-group--three">
+              <label class="choice">
+                <input type="radio" name="system" value="nft" checked>
+                <span class="choice-face">NFT</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="system" value="dft">
+                <span class="choice-face">DFT</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="system" value="raft">
+                <span class="choice-face">Rakit apung</span>
+              </label>
+            </div>
+          </fieldset>
+          <figure class="system-figure" data-system="nft">
+            <svg viewBox="0 0 320 180" role="img" aria-labelledby="nft-art">
+              <title id="nft-art">Ilustrasi NFT: talang tipis dengan tiga lubang tanam dan selada, ditopang rangka logam</title>
+              <defs>
+                <g id="nft-plant">
+                  <path d="M0 2v-10" stroke="#2E5E39" stroke-width="2.5" stroke-linecap="round"/>
+                  <g stroke="#2E5E39" stroke-width="1.8">
+                    <ellipse rx="6.5" ry="12" transform="translate(-20 -11) rotate(-66)" fill="#5FA84F"/>
+                    <ellipse rx="6.5" ry="12" transform="translate(20 -11) rotate(66)" fill="#5FA84F"/>
+                    <ellipse rx="7" ry="14" transform="translate(-12 -17) rotate(-38)" fill="#7CBF6A"/>
+                    <ellipse rx="7" ry="14" transform="translate(12 -17) rotate(38)" fill="#7CBF6A"/>
+                    <ellipse rx="7" ry="15" transform="translate(0 -20)" fill="#A8D98F"/>
+                  </g>
+                </g>
+              </defs>
+              <path d="M26 160h268" stroke="#D9D2C0" stroke-width="3" stroke-linecap="round"/>
+              <g fill="none" stroke="#737C75" stroke-width="4" stroke-linecap="square">
+                <path d="M108 106 90 158"></path>
+                <path d="M212 106 230 158"></path>
+                <path d="M98 136h124"></path>
+              </g>
+              <g fill="#737C75">
+                <rect x="82" y="154" width="18" height="5" rx="1"></rect>
+                <rect x="220" y="154" width="18" height="5" rx="1"></rect>
+              </g>
+              <path d="M36 92h248l-9 20H45Z" fill="#FFFFFF" stroke="#171A17" stroke-width="2.5" stroke-linejoin="round"></path>
+              <path d="M49 106h222l-4 5H53Z" fill="#BFE3EC"></path>
+              <ellipse cx="96" cy="92" rx="15" ry="5.5" fill="#DDE6E2" stroke="#171A17" stroke-width="2"></ellipse>
+              <ellipse cx="160" cy="92" rx="15" ry="5.5" fill="#DDE6E2" stroke="#171A17" stroke-width="2"></ellipse>
+              <ellipse cx="224" cy="92" rx="15" ry="5.5" fill="#DDE6E2" stroke="#171A17" stroke-width="2"></ellipse>
+              <use href="#nft-plant" x="96" y="92"></use>
+              <use href="#nft-plant" x="160" y="92"></use>
+              <use href="#nft-plant" x="224" y="92"></use>
+            </svg>
+            <figcaption class="system-caption">
+              <h3 class="system-name">NFT <span>Nutrient Film Technique</span></h3>
+              <p>Akar tanaman tumbuh pada aliran air tipis secara terus menerus di talang/gully. Memerlukan kemiringan untuk mencapai aliran air yang tipis.</p>
+            </figcaption>
+          </figure>
+          <figure class="system-figure" data-system="dft" hidden>
+            <svg viewBox="0 0 320 180" role="img" aria-labelledby="dft-art">
+              <title id="dft-art">Ilustrasi DFT: pipa PVC tebal dengan tiga lubang tanam dan selada, ditopang rangka logam</title>
+              <defs>
+                <g id="dft-plant">
+                  <path d="M0 2v-10" stroke="#2E5E39" stroke-width="2.5" stroke-linecap="round"/>
+                  <g stroke="#2E5E39" stroke-width="1.8">
+                    <ellipse rx="6.5" ry="12" transform="translate(-20 -11) rotate(-66)" fill="#5FA84F"/>
+                    <ellipse rx="6.5" ry="12" transform="translate(20 -11) rotate(66)" fill="#5FA84F"/>
+                    <ellipse rx="7" ry="14" transform="translate(-12 -17) rotate(-38)" fill="#7CBF6A"/>
+                    <ellipse rx="7" ry="14" transform="translate(12 -17) rotate(38)" fill="#7CBF6A"/>
+                    <ellipse rx="7" ry="15" transform="translate(0 -20)" fill="#A8D98F"/>
+                  </g>
+                </g>
+              </defs>
+              <path d="M26 160h268" stroke="#D9D2C0" stroke-width="3" stroke-linecap="round"/>
+              <g fill="none" stroke="#737C75" stroke-width="4" stroke-linecap="square">
+                <path d="M108 126 90 158"></path>
+                <path d="M212 126 230 158"></path>
+                <path d="M98 142h124"></path>
+              </g>
+              <g fill="#737C75">
+                <rect x="82" y="154" width="18" height="5" rx="1"></rect>
+                <rect x="220" y="154" width="18" height="5" rx="1"></rect>
+              </g>
+              <rect x="34" y="84" width="252" height="44" rx="18" fill="#FFFFFF" stroke="#171A17" stroke-width="2.5"></rect>
+              <path d="M54 96h212" stroke="#E7E1D1" stroke-width="3" stroke-linecap="round"></path>
+              <path d="M266 88v36" stroke="#CFC8B6" stroke-width="2"></path>
+              <ellipse cx="96" cy="86" rx="15" ry="5.5" fill="#7FC0CF" stroke="#171A17" stroke-width="2"></ellipse>
+              <ellipse cx="160" cy="86" rx="15" ry="5.5" fill="#7FC0CF" stroke="#171A17" stroke-width="2"></ellipse>
+              <ellipse cx="224" cy="86" rx="15" ry="5.5" fill="#7FC0CF" stroke="#171A17" stroke-width="2"></ellipse>
+              <use href="#dft-plant" x="96" y="86"></use>
+              <use href="#dft-plant" x="160" y="86"></use>
+              <use href="#dft-plant" x="224" y="86"></use>
+            </svg>
+            <figcaption class="system-caption">
+              <h3 class="system-name">DFT <span>Deep Flow Technique</span></h3>
+              <p>Akar tanaman terendam di air yang cukup dalam di pipa datar yang terus bersirkulasi.</p>
+            </figcaption>
+          </figure>
+          <figure class="system-figure" data-system="raft" hidden>
+            <svg viewBox="0 0 320 180" role="img" aria-labelledby="raft-art">
+              <title id="raft-art">Ilustrasi rakit apung: bak berisi air dengan papan apung tiga lubang tanam dan selada</title>
+              <defs>
+                <g id="raft-plant">
+                  <path d="M0 2v-10" stroke="#2E5E39" stroke-width="2.5" stroke-linecap="round"/>
+                  <g stroke="#2E5E39" stroke-width="1.8">
+                    <ellipse rx="6.5" ry="12" transform="translate(-20 -11) rotate(-66)" fill="#5FA84F"/>
+                    <ellipse rx="6.5" ry="12" transform="translate(20 -11) rotate(66)" fill="#5FA84F"/>
+                    <ellipse rx="7" ry="14" transform="translate(-12 -17) rotate(-38)" fill="#7CBF6A"/>
+                    <ellipse rx="7" ry="14" transform="translate(12 -17) rotate(38)" fill="#7CBF6A"/>
+                    <ellipse rx="7" ry="15" transform="translate(0 -20)" fill="#A8D98F"/>
+                  </g>
+                </g>
+              </defs>
+              <path d="M20 164h280" stroke="#D9D2C0" stroke-width="3" stroke-linecap="round"/>
+              <rect x="28" y="88" width="264" height="70" rx="3" fill="#FFFFFF" stroke="#171A17" stroke-width="2.5"></rect>
+              <rect x="34" y="100" width="252" height="52" fill="#BFE3EC"></rect>
+              <path d="M34 100h252" stroke="#7FC0CF" stroke-width="2.5"></path>
+              <path d="M62 140c9-4 18-4 27 0s18 4 27 0" fill="none" stroke="#93C9D8" stroke-width="2" stroke-linecap="round"></path>
+              <path d="M188 146c9-4 18-4 27 0s18 4 27 0" fill="none" stroke="#93C9D8" stroke-width="2" stroke-linecap="round"></path>
+              <rect x="48" y="90" width="224" height="14" rx="3" fill="#FFFFFF" stroke="#171A17" stroke-width="2.5"></rect>
+              <ellipse cx="96" cy="92" rx="14" ry="5" fill="#7FC0CF" stroke="#171A17" stroke-width="2"></ellipse>
+              <ellipse cx="160" cy="92" rx="14" ry="5" fill="#7FC0CF" stroke="#171A17" stroke-width="2"></ellipse>
+              <ellipse cx="224" cy="92" rx="14" ry="5" fill="#7FC0CF" stroke="#171A17" stroke-width="2"></ellipse>
+              <use href="#raft-plant" x="96" y="92"></use>
+              <use href="#raft-plant" x="160" y="92"></use>
+              <use href="#raft-plant" x="224" y="92"></use>
+            </svg>
+            <figcaption class="system-caption">
+              <h3 class="system-name">Rakit apung <span>Floating raft</span></h3>
+              <p>Tanaman ditanam di papan apung di dalam bak dan akar terendam sepenuhnya dalam air bernutrisi yang kaya oksigen.</p>
+            </figcaption>
+          </figure>
+          <div class="field">
+            <label for="holes">Jumlah lubang tanam</label>
+            <div class="input-row">
+              <input id="holes" name="holes" type="text" inputmode="numeric" value="100" maxlength="5" autocomplete="off" spellcheck="false" aria-describedby="holes-hint">
+              <span class="unit" aria-hidden="true">lubang</span>
+            </div>
+            <p class="hint" id="holes-hint">Angka saja. Contoh: 100. Belum tahu berapa yang dibutuhkan? <a class="hint-link" href="kebutuhan-lubang-tanam.html">Hitung dari target panen</a>.</p>
+          </div>
+          <fieldset class="field">
+            <legend class="field-legend">Jarak tanam</legend>
+            <div class="choice-group">
+              <label class="choice">
+                <input type="radio" name="spacing" value="rapat">
+                <span class="choice-face choice-face--stack">
+                  <span>10–15 cm</span>
+                  <span class="choice-note">kangkung, bayam</span>
+                </span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="spacing" value="lebar" checked>
+                <span class="choice-face choice-face--stack">
+                  <span>20–25 cm</span>
+                  <span class="choice-note">selada, pakcoy</span>
+                </span>
+              </label>
+            </div>
+          </fieldset>
+          <p class="total-line" id="total-line" aria-live="polite"></p>
+          <p class="note">Jarak tanam menentukan panjang talang, pipa, atau rakit. Selada dan pakcoy perlu ruang 20–25 cm, sedangkan kangkung dan bayam cukup 10–15 cm.</p>
+          <noscript>
+            <p class="note">Aktifkan JavaScript agar perkiraan panjang instalasi bisa dihitung otomatis.</p>
+          </noscript>
+        </form>
+        <section class="panel" id="cost-panel" aria-labelledby="cost-title">
+          <div class="panel-head">
+            <span class="panel-num" aria-hidden="true">02</span>
+            <h2 id="cost-title">Estimasi biaya</h2>
+          </div>
+          <p class="result-meta" id="summary-meta" aria-live="polite"></p>
+          <p class="capacity-line" id="capacity-line"></p>
+          <ul class="cost-list" id="cost-list"></ul>
+          <fieldset class="field extra-field">
+            <legend class="field-legend">Jasa perakitan</legend>
+            <div class="choice-group">
+              <label class="choice">
+                <input type="radio" name="build" value="worker" checked>
+                <span class="choice-face choice-face--stack">
+                  <span>Pakai jasa tukang</span>
+                  <span class="choice-note" id="labor-note">+Rp 200.000 / 10 m</span>
+                </span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="build" value="self">
+                <span class="choice-face choice-face--stack">
+                  <span>Kerjakan sendiri</span>
+                  <span class="choice-note">tanpa biaya jasa</span>
+                </span>
+              </label>
+            </div>
+          </fieldset>
+          <fieldset class="field extra-field">
+            <legend class="field-legend">Atap &amp; naungan</legend>
+            <div class="choice-group">
+              <label class="choice">
+                <input type="radio" name="roof" value="yes" checked>
+                <span class="choice-face choice-face--stack">
+                  <span>Pakai atap</span>
+                  <span class="choice-note">+Rp 40.000 / m²</span>
+                </span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="roof" value="no">
+                <span class="choice-face choice-face--stack">
+                  <span>Tanpa atap</span>
+                  <span class="choice-note">tanpa biaya atap</span>
+                </span>
+              </label>
+            </div>
+          </fieldset>
+          <div class="total-block">
+            <div class="total-row">
+              <span>Subtotal bahan</span>
+              <span id="subtotal-value">Rp 0</span>
+            </div>
+            <div class="total-row">
+              <span id="labor-label">Jasa perakitan</span>
+              <span id="labor-value">Rp 0</span>
+            </div>
+            <div class="total-row">
+              <span id="roof-label">Atap &amp; naungan</span>
+              <span id="roof-value">Rp 0</span>
+            </div>
+            <div class="total-row">
+              <span>Biaya tak terduga (10%)</span>
+              <span id="buffer-value">Rp 0</span>
+            </div>
+            <div class="total-row total-row--grand">
+              <span>Total</span>
+              <span id="grand-value" aria-live="polite">Rp 0</span>
+            </div>
+          </div>
+          <p class="result-foot">Estimasi memakai harga bahan di atas dan dibulatkan ke atas per satuan beli. Belum termasuk bibit, nutrisi, dan biaya listrik.</p>
+        </section>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html" aria-label="tanihelp by kebunsaku — beranda">
+            <span class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#F4EFE3" stroke-width="2" stroke-linecap="square" aria-hidden="true" focusable="false">
+                <path d="M12 20v-8"></path>
+                <path d="M12 15c0-3.6 2.9-6.5 6.5-6.5 0 3.6-2.9 6.5-6.5 6.5Z"></path>
+                <path d="M12 18c0-3.6-2.9-6.5-6.5-6.5 0 3.6 2.9 6.5 6.5 6.5Z"></path>
+              </svg>
+            </span>
+            <span class="brand-name">tanihelp <span class="brand-by">by kebunsaku</span></span>
+          </a>
+          <p>Alat online gratis untuk masyarakat umum yang ingin memulai usaha hidroponik dan microgreens.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Navigasi footer">
+          <h2>Jelajahi</h2>
+          <ul>
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="index.html#alat">Alat</a></li>
+            <li><a href="jadwal-tanam.html">Jadwal tanam</a></li>
+            <li><a href="kebutuhan-lubang-tanam.html">Kebutuhan lubang tanam</a></li>
+            <li><a href="resep-nutrisi-ab-mix.html">Resep nutrisi</a></li>
+            <li><a href="index.html#untuk-siapa">Untuk siapa</a></li>
+          </ul>
+        </nav>
+        <div class="footer-contact">
+          <h2>Kontak</h2>
+          <p><a href="mailto:[NEEDS INPUT: alamat email kontak]">[NEEDS INPUT: alamat email kontak]</a></p>
+          <p>Dibuat untuk pembaca di Indonesia.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 tanihelp by kebunsaku</p>
+        <div class="footer-legal">
+          <a href="[NEEDS INPUT: URL kebijakan privasi]">Kebijakan privasi</a>
+          <span>Estimasi bersifat panduan umum.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      "use strict";
+
+      // ============================================================
+      // Data sistem hidroponik.
+      // name   = nama pendek
+      // full   = nama lengkap
+      // vessel = sebutan wadah tanam (dipakai di kalimat panjang)
+      // ============================================================
+      var SYSTEMS = {
+        nft: { name: "NFT", full: "Nutrient Film Technique", vessel: "talang" },
+        dft: { name: "DFT", full: "Deep Flow Technique", vessel: "pipa" },
+        raft: { name: "Rakit apung", full: "Floating raft", vessel: "rakit" }
+      };
+
+      // min & max = jarak tanam (cm), density = tanaman per m²
+      var SPACINGS = {
+        rapat: { label: "10–15 cm", min: 10, max: 15, density: 40 },
+        lebar: { label: "20–25 cm", min: 20, max: 25, density: 20 }
+      };
+
+      // Harga bahan (Rupiah)
+      var PRICES = {
+        gully: 45000,      // talang NFT per meter, termasuk tutup
+        dftPipe: 25000,    // pipa PVC 2,5 inci per meter, termasuk tutup
+        pe: 4000,          // selang PE 6 mm per meter
+        returnPipe: 17000, // pipa PVC 1,5 inci per meter
+        board: 50000,      // papan apung 1×1 m
+        steel: 15000,      // baja ringan per meter, termasuk mur & baut
+        liner: 20000,      // terpal/geomembran per m²
+        pumpBase: 40000,   // pompa 12 watt
+        pumpStep: 15000,   // setiap tambahan 6 watt
+        reservoir: 60000,  // reservoir per 50 liter
+        labor: 200000,     // jasa perakitan per 10 meter
+        roof: 40000        // atap & naungan per m²
+      };
+
+      var form = document.getElementById("calc-form");
+      var holesInput = document.getElementById("holes");
+      var totalLine = document.getElementById("total-line");
+      var costPanel = document.getElementById("cost-panel");
+      var summaryMeta = document.getElementById("summary-meta");
+      var capacityLine = document.getElementById("capacity-line");
+      var costList = document.getElementById("cost-list");
+      var laborLabel = document.getElementById("labor-label");
+      var laborValue = document.getElementById("labor-value");
+      var laborNote = document.getElementById("labor-note");
+      var roofLabel = document.getElementById("roof-label");
+      var roofValue = document.getElementById("roof-value");
+      var subtotalValue = document.getElementById("subtotal-value");
+      var bufferValue = document.getElementById("buffer-value");
+      var grandValue = document.getElementById("grand-value");
+      var figures = document.querySelectorAll(".system-figure");
+
+      var moneyFormat = new Intl.NumberFormat("id-ID", {
+        maximumFractionDigits: 0
+      });
+      var qtyFormat = new Intl.NumberFormat("id-ID", {
+        maximumFractionDigits: 1
+      });
+
+      /* ---------- helpers ---------- */
+
+      function checkedValue(name, root) {
+        var input = (root || document).querySelector(
+          'input[name="' + name + '"]:checked'
+        );
+        return input ? input.value : "";
+      }
+
+      function metaHtml(parts) {
+        var html = "";
+        for (var i = 0; i < parts.length; i++) {
+          if (i > 0) {
+            html += '<span class="dot" aria-hidden="true">·</span>';
+          }
+          html += "<span>" + parts[i] + "</span>";
+        }
+        return html;
+      }
+
+      function rupiah(value) {
+        return "Rp " + moneyFormat.format(Math.round(value));
+      }
+
+      function qty(value) {
+        return qtyFormat.format(value);
+      }
+
+      function lengthText(holes, spacing) {
+        if (!(holes > 0)) {
+          return "—";
+        }
+        return (
+          qty((holes * spacing.min) / 100) +
+          "–" +
+          qty((holes * spacing.max) / 100) +
+          " m"
+        );
+      }
+
+      // 12 watt untuk 4 baris pertama, lalu +6 watt tiap 4 baris.
+      function pumpWatts(rows) {
+        var steps = Math.max(1, Math.ceil(rows / 4));
+        return 12 + (steps - 1) * 6;
+      }
+
+      function pumpPrice(watts) {
+        return PRICES.pumpBase + ((watts - 12) / 6) * PRICES.pumpStep;
+      }
+
+      function costGroup(label) {
+        return '<li class="cost-group">' + label + "</li>";
+      }
+
+      /* ---------- render ---------- */
+
+      function render() {
+        var systemKey = checkedValue("system", form) || "nft";
+        var system = SYSTEMS[systemKey];
+        var spacingKey = checkedValue("spacing", form) || "lebar";
+        var spacing = SPACINGS[spacingKey];
+        var build = checkedValue("build", costPanel) || "worker";
+        var roof = checkedValue("roof", costPanel) || "yes";
+        var holes = parseInt(holesInput.value, 10);
+
+        if (!isFinite(holes) || holes < 0) {
+          holes = 0;
+        }
+
+        var area = holes / spacing.density;
+        var boards = systemKey === "raft" ? Math.ceil(area) : 0;
+        var rows = systemKey === "raft" ? boards : 4 * area;
+        var costArea = systemKey === "raft" ? boards : area;
+
+        for (var i = 0; i < figures.length; i++) {
+          figures[i].hidden = figures[i].getAttribute("data-system") !== systemKey;
+        }
+
+        if (holes > 0) {
+          if (systemKey === "raft") {
+            totalLine.innerHTML =
+              "Kebutuhan papan rakit: <strong>" +
+              boards +
+              " papan (" +
+              qty(area) +
+              " m²)</strong>";
+          } else {
+            totalLine.innerHTML =
+              "Perkiraan panjang " +
+              system.vessel +
+              ": <strong>" +
+              lengthText(holes, spacing) +
+              "</strong>";
+          }
+        } else {
+          totalLine.textContent =
+            systemKey === "raft"
+              ? "Isi jumlah lubang tanam untuk melihat kebutuhan papan rakit."
+              : "Isi jumlah lubang tanam untuk melihat perkiraan panjang " +
+                system.vessel +
+                ".";
+        }
+
+        summaryMeta.innerHTML = metaHtml([
+          system.name,
+          holes > 0 ? qty(holes) + " lubang tanam" : "lubang tanam belum diisi",
+          "jarak " + spacing.label
+        ]);
+
+        if (holes > 0) {
+          if (systemKey === "raft") {
+            capacityLine.innerHTML =
+              "Luas sistem <strong>" + qty(boards) + " m²</strong> · <strong>" +
+              boards + "</strong> papan apung";
+          } else {
+            capacityLine.innerHTML =
+              "Luas sistem <strong>" + qty(area) + " m²</strong> · <strong>" +
+              qty(rows) + "</strong> baris " + system.vessel;
+          }
+        } else {
+          capacityLine.textContent =
+            "Isi jumlah lubang tanam untuk melihat kapasitas sistem.";
+        }
+
+        var items = [];
+        var material = 0;
+        var laborUnits = 0;
+
+        function add(name, detail, amount) {
+          material += amount;
+          items.push(
+            '<li class="cost-row"><div>' +
+              '<span class="cost-name">' + name + "</span>" +
+              '<span class="cost-detail">' + detail + "</span>" +
+              '</div><span class="cost-amount">' + rupiah(amount) + "</span></li>"
+          );
+        }
+
+        function group(label) {
+          items.push(costGroup(label));
+        }
+
+        if (holes > 0) {
+          if (systemKey === "raft") {
+            var boardCost = boards * PRICES.board;
+            var frameRaft = Math.ceil(12 * boards);
+            var linerM2 = Math.ceil(1.5 * boards);
+            var pumpRaft = pumpWatts(boards);
+
+            group("Sistem tanam");
+            add(
+              "Papan apung",
+              boards + " papan × " + rupiah(PRICES.board),
+              boardCost
+            );
+
+            group("Rangka & kolam");
+            add(
+              "Baja ringan kanal C",
+              frameRaft + " m × " + rupiah(PRICES.steel),
+              frameRaft * PRICES.steel
+            );
+            add(
+              "Terpal / geomembran",
+              linerM2 + " m² × " + rupiah(PRICES.liner),
+              linerM2 * PRICES.liner
+            );
+
+            group("Pompa");
+            add(
+              "Pompa submersible",
+              pumpRaft + " watt",
+              pumpPrice(pumpRaft)
+            );
+
+            laborUnits = Math.ceil(boards / 10);
+          } else {
+            var pipeM = Math.ceil(4 * area);
+            var peM = Math.ceil(0.2 * rows);
+            var returnM = Math.ceil(area);
+            var pumpW = pumpWatts(rows);
+            var waterL = Math.ceil((2 * holes) / 50) * 50;
+            var frameM = Math.ceil(18 * (rows / 4));
+
+            group("Sistem tanam");
+            if (systemKey === "nft") {
+              add(
+                "Talang NFT",
+                pipeM + " m × " + rupiah(PRICES.gully),
+                pipeM * PRICES.gully
+              );
+            } else {
+              add(
+                "Pipa PVC 2,5 inci",
+                pipeM + " m × " + rupiah(PRICES.dftPipe),
+                pipeM * PRICES.dftPipe
+              );
+            }
+            add(
+              "Selang PE 6 mm",
+              peM + " m × " + rupiah(PRICES.pe),
+              peM * PRICES.pe
+            );
+            add(
+              "Pipa PVC 1,5 inci",
+              returnM + " m × " + rupiah(PRICES.returnPipe),
+              returnM * PRICES.returnPipe
+            );
+
+            group("Pompa & air");
+            add(
+              "Pompa submersible",
+              pumpW + " watt",
+              pumpPrice(pumpW)
+            );
+            add(
+              "Reservoir",
+              waterL + " liter (" + waterL / 50 + " × 50 L)",
+              (waterL / 50) * PRICES.reservoir
+            );
+
+            group("Rangka");
+            add(
+              "Baja ringan kanal C",
+              frameM + " m × " + rupiah(PRICES.steel),
+              frameM * PRICES.steel
+            );
+
+            laborUnits = Math.ceil(pipeM / 10);
+          }
+        }
+
+        costList.innerHTML =
+          holes > 0
+            ? items.join("")
+            : '<li class="cost-empty">Isi jumlah lubang tanam untuk melihat rincian bahan dan biaya.</li>';
+
+        var labor = build === "worker" ? laborUnits * PRICES.labor : 0;
+        var roofCost = roof === "yes" ? costArea * PRICES.roof : 0;
+        var subtotal = material + labor + roofCost;
+        var buffer = Math.round(subtotal * 0.1);
+
+        laborLabel.textContent =
+          build === "worker" && laborUnits > 0
+            ? "Jasa perakitan (" +
+              laborUnits +
+              (systemKey === "raft" ? " × 10 m²)" : " × 10 m)")
+            : "Jasa perakitan";
+        laborValue.textContent = rupiah(labor);
+        laborNote.textContent =
+          "+" + rupiah(PRICES.labor) + (systemKey === "raft" ? " / 10 m²" : " / 10 m");
+
+        roofLabel.textContent =
+          roof === "yes" && costArea > 0
+            ? "Atap & naungan (" + qty(costArea) + " m²)"
+            : "Atap & naungan";
+        roofValue.textContent = rupiah(roofCost);
+
+        subtotalValue.textContent = rupiah(material);
+        bufferValue.textContent = rupiah(buffer);
+        grandValue.textContent = rupiah(subtotal + buffer);
+      }
+
+      /* ---------- init ---------- */
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+      });
+
+      holesInput.addEventListener("input", function () {
+        var cleaned = holesInput.value.replace(/[^0-9]/g, "");
+        if (cleaned !== holesInput.value) {
+          holesInput.value = cleaned;
+        }
+        render();
+      });
+
+      form.addEventListener("change", function (event) {
+        var name = event.target && event.target.name;
+        if (name === "system" || name === "spacing") {
+          render();
+        }
+      });
+
+      costPanel.addEventListener("change", function (event) {
+        var name = event.target && event.target.name;
+        if (name === "build" || name === "roof") {
+          render();
+        }
+      });
+
+      render();
+    }());
+  </script>
+</body>
+</html>
